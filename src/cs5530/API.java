@@ -118,7 +118,7 @@ public class API {
         }
 
         if(Available_Hours[0] == null || Available_Hours[0].isEmpty()) {
-            return new String[];
+            return new String[2];
         }
 
         return Available_Hours;
