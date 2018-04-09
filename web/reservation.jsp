@@ -10,6 +10,8 @@
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <title>Title</title>
@@ -45,6 +47,7 @@
         java.sql.Date sql_date = new java.sql.Date(parsed.getTime());
         Date dd = new Date(Calendar.getInstance().getTime().getTime());
         ArrayList<String> availablePid = new ArrayList<>();
+
         if (dd.compareTo(sql_date)>0) // past
         {
 //            System.out.println("The date you enter is in the past");
@@ -56,6 +59,8 @@ The reserved date is in the past.
 <%
         }else{
             availablePid = API.Show_Avaliable(vin, sql_date, con.stmt);
+            session.setAttribute("pids", availablePid);
+//            request.setAttribute("pids", availablePid);
             if(availablePid.isEmpty())
             {
 //                System.out.println("This car is not available on this date \nPlease choose a different car");
@@ -65,23 +70,23 @@ The car is not available on the date you selected.
 
 <%
             }else{
+                ArrayList<String> hantei = (ArrayList<String>)session.getAttribute("pids");
+
 %>
 
-The following is the available PID:
-<c:forEach items="${availablePid}" var="pid">
-    <tr>
-        <c:forEach items="${pid}" var="pid">
+The first pid is <%= hantei.get(0)%><br />
+The following is the available PID:<br />
 
-            <td>${pid.value}</td>
+<c:forEach var="item" items="${pids}">
 
-        </c:forEach>
-    </tr>
+    <%--<c:out value="${item}" /><br />--%>
+    <a href="TOBEDELETED_getattribute_test.jsp?id=${item}">${item}</a><br />
 </c:forEach>
 
 <%
+            con.closeConnection();
             }
         }
-        con.closeConnection();
     }
 %>
 </body>
