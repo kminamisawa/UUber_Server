@@ -59,7 +59,7 @@ The reserved date is in the past.
 <%
         }else{
             availablePid = API.Show_Avaliable(vin, sql_date, con.stmt);
-            session.setAttribute("pids", availablePid);
+            request.setAttribute("pids", availablePid);
 //            request.setAttribute("pids", availablePid);
             if(availablePid.isEmpty())
             {
@@ -70,7 +70,7 @@ The car is not available on the date you selected.
 
 <%
             }else{
-                ArrayList<String> pid_list = (ArrayList<String>)session.getAttribute("pids");
+                ArrayList<String> pid_list = (ArrayList<String>)request.getAttribute("pids");
 
 %>
 
@@ -80,7 +80,8 @@ The following is the available PID:<br />
 <c:forEach var="item" items="${pids}">
 
     <%--<c:out value="${item}" /><br />--%>
-    <a href="TOBEDELETED_getattribute_test.jsp?id=${item}">${item}</a><br />
+    <%--request.setAttribute("selected_pid", availablePid);--%>
+    <a href="reservation.jsp?id=${item}">${item}</a><br />
 </c:forEach>
 
 <%
