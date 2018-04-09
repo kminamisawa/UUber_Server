@@ -70,11 +70,11 @@ The car is not available on the date you selected.
 
 <%
             }else{
-                ArrayList<String> hantei = (ArrayList<String>)session.getAttribute("pids");
+                ArrayList<String> pid_list = (ArrayList<String>)session.getAttribute("pids");
 
 %>
 
-The first pid is <%= hantei.get(0)%><br />
+The first pid is <%= pid_list.get(0)%><br />
 The following is the available PID:<br />
 
 <c:forEach var="item" items="${pids}">
