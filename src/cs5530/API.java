@@ -80,12 +80,12 @@ public class API {
     }
 
 
-    public static void Registration_UDriver(UD driver, Statement stmt) {
+    public static boolean Registration_UDriver(UD driver, Statement stmt) {
         String sql="INSERT INTO UD VALUES ('"+ driver.getLogin_ID() + "','" + driver.getPw() + "','"
                 +  driver.getName() + "','" + driver.getAddress()+ "','"  + driver.getCity()+ "','"
                 + driver.getState()+ "','" + driver.getPhone() + "');";
         System.out.println("Executed SQL: " + sql);
-        update(sql, stmt);
+        return update(sql, stmt);
     }
 
 
