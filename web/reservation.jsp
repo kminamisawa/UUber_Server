@@ -42,8 +42,7 @@
     String get_vin = (String) session.getAttribute("vin");
     String get_cost = (String) session.getAttribute("cost");
 
-    boolean in_confirmation_state = false;
-    if((vin == null || date == null || cost == null) && selected_PID == null && !in_confirmation_state){
+    if((vin == null || date == null || cost == null) && selected_PID == null){
 %>
 
 <h2 style="text-align: center;"><span style="color: #0000ff;">Please Fill in Following Information:</span></h2>
@@ -66,47 +65,48 @@
 </h3>
 
 <%
-    }else if (selected_PID == null){
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        java.util.Date parsed = format.parse(date);
-        java.sql.Date sql_date = new java.sql.Date(parsed.getTime());
-        Date dd = new Date(Calendar.getInstance().getTime().getTime());
-        ArrayList<String> availablePid;
+}else if (selected_PID == null){
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    java.util.Date parsed = format.parse(date);
+    java.sql.Date sql_date = new java.sql.Date(parsed.getTime());
+    Date dd = new Date(Calendar.getInstance().getTime().getTime());
+    ArrayList<String> availablePid;
 
-        if (dd.compareTo(sql_date)>0) // past
-        {
+    if (dd.compareTo(sql_date)>0) // past
+    {
 %>
 
 The reserved date is in the past.
 
 <%
-        }else{
-            availablePid = API.Show_Avaliable(vin, sql_date, con.stmt);
+}else{
+    availablePid = API.Show_Avaliable(vin, sql_date, con.stmt);
 
-            if(availablePid.isEmpty())
-            {
+    if(availablePid.isEmpty())
+    {
 %>
 The car is not available on the date you selected.
 
 <%
-            }else{
-                request.setAttribute("pids", availablePid);
-                session.setAttribute("vin", vin);
-                session.setAttribute("date", date);
-                session.setAttribute("cost", cost);
-                ArrayList<String> pid_list = (ArrayList<String>)request.getAttribute("pids");
+}else{
+    request.setAttribute("pids", availablePid);
+    session.setAttribute("vin", vin);
+    session.setAttribute("date", date);
+    session.setAttribute("sql_date", sql_date);
+    session.setAttribute("cost", cost);
+    ArrayList<String> pid_list = (ArrayList<String>)request.getAttribute("pids");
 %>
 
 The following is the available PID.<br>
 
 <%
-                for (String each_pid : pid_list){
+    for (String each_pid : pid_list){
 %>
 
 PID: <%=each_pid%> <br>
 
 <%
-                    String[] hour = API.GetFromToHour(each_pid, con.stmt);
+    String[] hour = API.GetFromToHour(each_pid, con.stmt);
 %>
 
 From: <%=hour[0]%><br>
@@ -123,7 +123,7 @@ To: <%=hour[1]%><br>
     <form action="Damn" method="POST">
         <select name="PID" >
             <c:forEach var="item" items="${pids}">
-            <option>${item}</option>
+                <option>${item}</option>
             </c:forEach>
         </select>
         <input type="submit"/>
@@ -133,37 +133,27 @@ To: <%=hour[1]%><br>
 
 
 <%
-            }
         }
-    }else if (!in_confirmation_state){
-        session.setAttribute("selected_PID", selected_PID);
-        get_PID = (String) session.getAttribute("selected_PID");
-        get_date = (String) session.getAttribute("date");
-        get_vin = (String) session.getAttribute("vin");
-        get_cost = (String) session.getAttribute("cost");
-        String[] reserved_hour = API.GetFromToHour(get_PID, con.stmt);
-        in_confirmation_state = true;
-        session.setAttribute("conf_state", in_confirmation_state);
+    }
+}else {
+    session.setAttribute("selected_PID", selected_PID);
+    get_PID = (String) session.getAttribute("selected_PID");
+    get_date = (String) session.getAttribute("date");
+    get_vin = (String) session.getAttribute("vin");
+    get_cost = (String) session.getAttribute("cost");
+    String[] reserved_hour = API.GetFromToHour(get_PID, con.stmt);
 %>
 
-    Please Confirm Your Reservation:<br>
-    Date: <%=get_date%><br>
-    VIN: <%=get_vin%><br>
-    From: <%=reserved_hour[0]%><br>
-    To: <%=reserved_hour[1]%><br>
-    Cost: <%=get_cost%><br>
+Please Confirm Your Reservation:<br>
+Date: <%=get_date%><br>
+VIN: <%=get_vin%><br>
+From: <%=reserved_hour[0]%><br>
+To: <%=reserved_hour[1]%><br>
+Cost: <%=get_cost%><br>
 
-<form name="reservation" method=get onsubmit="return myEnter()" action="reservation.jsp">
+<form name="reservation" method=get onsubmit="return myEnter()" action="confirmation.jsp">
     <input type=submit value="Reserve">
 </form>
-<%
-    }else if (in_confirmation_state){
-
-
-%>
-
-Reservation Confirmation Demo
-
 <%
     }
     con.closeConnection();
