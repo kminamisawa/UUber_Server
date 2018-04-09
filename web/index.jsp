@@ -12,10 +12,10 @@
 
         function check_all_fields(form_obj){
             // alert(form_obj.searchAttribute.value+"='"+form_obj.attributeValue.value+"'");
-            if( form_obj.loginValue.value == ""){
+            if( form_obj.UserID.value == ""){
                 alert("Login field should be nonempty");
                 return false;
-            }else if( form_obj.pwValue.value == ""){
+            }else if( form_obj.Password.value == ""){
                 alert("Password field should be nonempty");
                 return false;
             }
