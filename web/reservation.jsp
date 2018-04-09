@@ -22,16 +22,11 @@
     Connector2 con = new Connector2();
     String vin = request.getParameter("VIN");
     String date = request.getParameter("date");
+    String cost = request.getParameter("cost");
     String selected_PID = request.getParameter("PID");
-
-    if (selected_PID != null){
+    if((vin == null || date == null || cost == null) && selected_PID == null){
 %>
-OMG it's working man <%=selected_PID%>
 
-<%
-    }
-    if(vin == null || date == null){
-%>
 <h2 style="text-align: center;"><span style="color: #0000ff;">Please Fill in Following Information:</span></h2>
 <h3 style="text-align: center;">
     <form name="UserIDInfo" method=get onsubmit="return check_all_fields(this)" action="reservation.jsp">
@@ -43,12 +38,16 @@ OMG it's working man <%=selected_PID%>
             <input type="date" name="date" required>
         </p>
 
+        <p><strong>3. Type the Cost:</strong>
+            <input type="text" name="cost" pattern=".*\d+.*" required>
+        </p>
+
         <p><input type=submit value="Check Availability"></p>
     </form>
 </h3>
 
 <%
-    }else{
+    }else if (selected_PID == null){
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date parsed = format.parse(date);
         java.sql.Date sql_date = new java.sql.Date(parsed.getTime());
@@ -57,32 +56,50 @@ OMG it's working man <%=selected_PID%>
 
         if (dd.compareTo(sql_date)>0) // past
         {
-//            System.out.println("The date you enter is in the past");
-
-
 %>
+
 The reserved date is in the past.
 
 <%
         }else{
             availablePid = API.Show_Avaliable(vin, sql_date, con.stmt);
-            request.setAttribute("pids", availablePid);
-//            request.setAttribute("pids", availablePid);
+
             if(availablePid.isEmpty())
             {
-//                System.out.println("This car is not available on this date \nPlease choose a different car");
-
 %>
 The car is not available on the date you selected.
 
 <%
             }else{
+                request.setAttribute("pids", availablePid);
+                session.setAttribute("vin", vin);
+                session.setAttribute("date", date);
+                session.setAttribute("cost", cost);
                 ArrayList<String> pid_list = (ArrayList<String>)request.getAttribute("pids");
-
 %>
 
-<form method="POST" action="reservation.jsp">
-    The following is the available PID:<br />
+The following is the available PID.<br>
+
+<%
+                for (String each_pid : pid_list){
+%>
+
+PID: <%=each_pid%> <br>
+
+<%
+                    String[] hour = API.GetFromToHour(each_pid, con.stmt);
+%>
+
+From: <%=hour[0]%><br>
+To: <%=hour[1]%><br>
+<br>
+<br>
+<%
+    }
+%>
+
+<form method="GET" action="reservation.jsp">
+    Please select the available PID:<br />
     <p>
     <form action="Damn" method="POST">
         <select name="PID" >
@@ -92,30 +109,30 @@ The car is not available on the date you selected.
         </select>
         <input type="submit"/>
     </form>
-    <%--<select name=”PID_Dropdown”　id="select_pid"　required>--%>
-        <%--<c:forEach var="item" items="${pids}">--%>
-            <%--<option value=”${item}”>${item}</option>--%>
-        <%--</c:forEach>--%>
-    <%--</select>--%>
     </p>
 </form>
 
 
-<%--<c:forEach var="item" items="${pids}">--%>
-
-    <%--&lt;%&ndash;<c:out value="${item}" /><br />&ndash;%&gt;--%>
-    <%--&lt;%&ndash;request.setAttribute("selected_pid", availablePid);&ndash;%&gt;--%>
-    <%--<a href="reservation.jsp?id=${item}">${item}</a><br />--%>
-
-    <%--&lt;%&ndash;<a href="reservation.jsp?id=${item}">${item}</a><br />&ndash;%&gt;--%>
-<%--</c:forEach>--%>
-
 <%
-
-//                selected_PID = (String) request.getParameter("PID");
-
             }
         }
+    }else {
+        session.setAttribute("selected_PID", selected_PID);
+        String get_PID = (String) session.getAttribute("selected_PID");
+        String get_date = (String) session.getAttribute("date");
+        String get_vin = (String) session.getAttribute("vin");
+        String get_cost = (String) session.getAttribute("cost");
+        String[] reserved_hour = API.GetFromToHour(get_PID, con.stmt);
+%>
+
+    Please Confirm Your Reservation:<br>
+    Date: <%=get_date%><br>
+    VIN: <%=get_vin%><br>
+    From: <%=reserved_hour[0]%><br>
+    To: <%=reserved_hour[1]%><br>
+    Cost: <%=get_cost%><br>
+
+<%
     }
     con.closeConnection();
 %>
