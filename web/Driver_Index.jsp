@@ -117,8 +117,9 @@
 </div>
 
 <div style="text-align: center;">
-    <form name="UserIDInfo" method=get action="Driver_Index.jsp">
-        <a href="Driver_Index.jsp">Are you a Driver?</a><br />        </form>
+    <form name="UserIDInfo" method=get action="index.jsp">
+        <a href="index.jsp">Are you an User?</a><br />
+    </form>
 </div>
 <%
     con.closeConnection();
