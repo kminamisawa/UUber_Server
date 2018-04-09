@@ -33,13 +33,18 @@ Invalid user man.
 <h2 style="text-align: center;"><span style="color: #0000ff;">Please Select Your Option:</span></h2>
 <h3 style="text-align: center;">
     <form action="New_UC.jsp">
-        <%session.setAttribute("login", loginID);%>
+        <%session.setAttribute("login", new_user.getLogin_ID());%>
         <%--<input type=hidden name="login" value="<%=loginID%>">--%>
         1. <a href="New_UC.jsp">Add New UC</a><br />
     </form>
     2. Modifying Existing UC<br />
     3. Add Operation Hour<br />
-    4. Exit</h3>
+
+    <form action="Driver_Index.jsp">
+        <%session.removeAttribute("driver");%>
+        4. <a href="Driver_Index.jsp">Exit</a><br />
+    </form>
+</h3>
 <%
         con.closeConnection();
     }
