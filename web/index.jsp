@@ -17,23 +17,7 @@
             <option value="User">User</option>
             <option value="Driver">Driver</option>
         </select></p>
-    <p><input type="submit" /></p>
-</form></div>
-<div>
-    <p style="text-align: center;"><strong> Login id:&nbsp;</strong><input maxlength="20" name="name" size="15" type="text" /></p>
-</div>
-<div>
-    <p style="text-align: center;"><strong>Password:&nbsp;</strong><input maxlength="4" name="pass" size="15
-          " type="password" /></p>
-</div>
-<div>
-    <p style="text-align: center;"><select>
-        <option value="User">User</option>
-        <option value="Driver">Driver</option>
-    </select></p>
-</div>
-<div><form action="login.jsp">
-    <p style="text-align: center;"><input type="submit" value="Login" /></p>
+    <p><input type="submit" value="Login"/></p>
 </form></div>
 <div>
     <p style="text-align: center;">&nbsp;</p>
