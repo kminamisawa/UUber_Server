@@ -65,7 +65,7 @@
 </div>
 <div style="text-align: center;">
     <%--<form name="UserIDInfo" method=get onsubmit="return check_all_fields(this)" action="login.jsp">--%>
-    <form name="UserIDInfo" method=get action="login.jsp">
+    <form name="UserIDInfo" method=get action="Driver_login.jsp">
 
         <p><strong>Login ID:</strong>
             <input name="UserID" type="text" required pattern=".*\S+.*">
@@ -85,7 +85,7 @@
 
 
 <div style="text-align: center;">
-    <form name="UserRegisterInfo" method=get action="User_Regisger.jsp">
+    <form name="UserRegisterInfo" method=get action="Driver_Register.jsp">
         <p><strong>Login ID:</strong>
             <input name="RloginValue" type="text" required pattern=".*\S+.*">
         </p>
@@ -117,8 +117,9 @@
 </div>
 
 <div style="text-align: center;">
-    <form name="UserIDInfo" method=get action="Driver_Index.jsp">
-        <a href="Driver_Index.jsp">Are you a Driver?</a><br />        </form>
+    <form name="UserIDInfo" method=get action="index.jsp">
+        <a href="index.jsp">Are you an User?</a><br />
+    </form>
 </div>
 <%
     con.closeConnection();
