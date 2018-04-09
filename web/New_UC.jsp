@@ -70,6 +70,13 @@
 
 %>
 <p style="text-align: center;">Successfully Added to the Database</p>
+<form name="UserIDInfo" method=get onsubmit="return check_all_fields(this)" action="Driver_login.jsp">
+    <p><input type=submit value="go to menu"></p>
+
+
+
+
+</form>
 <%
     }
 %>

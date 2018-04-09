@@ -11,7 +11,13 @@
     String loginID = request.getParameter("UserID");
     String password = request.getParameter("Password");
 
-    UUser new_user = (UUser) API.Login_User(true, loginID, password, con.stmt);
+    UUser new_user = null;
+    if(loginID != null && password != null)
+    {
+         new_user = (UUser) API.Login_User(true, loginID, password, con.stmt);
+    } else{
+         new_user = session.getAttribute(user);
+    }
     if(new_user == null){
 %>
 
@@ -20,6 +26,10 @@
 <%
     }else{
         String user_name = new_user.getName();
+
+        if(session.getAttribute("user") != null)
+            session.removeAttribute("user");
+        session.setAttribute("user", new_user);
 %>
 <h1 style="text-align: center;"><span style="color: #ff6600;"><strong>Welcome Back to the UUber, <%= user_name %>!</strong></span></h1>
 <h2 style="text-align: center;"><span style="color: #0000ff;">Please Select Your Option:</span></h2>
