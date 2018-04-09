@@ -16,7 +16,7 @@
     {
          new_user = (UUser) API.Login_User(true, loginID, password, con.stmt);
     } else{
-         new_user = session.getAttribute(user);
+         new_user = (UUser)session.getAttribute("user");
     }
     if(new_user == null){
 %>
