@@ -30,13 +30,13 @@
         <h1 style="text-align: center;"><span style="color: #ff6600;"><img src="https://html-online.com/editor/tinymce4_6_5/plugins/emoticons/img/smiley-cool.gif" alt="cool" /> Welcome to U-UBER<img src="https://html-online.com/editor/tinymce4_6_5/plugins/emoticons/img/smiley-cool.gif" alt="cool" /></span></h1>
     </div>
     <div style="text-align: center;">
-        <form name="UserIDInfo" method=get onsubmit="return check_all_fields(this)" action="login.jsp">
+        <form name="UserIDInfo" method=get onsubmit="return check_all_fields(this)" action="user_login.jsp">
             <p><strong>Login ID:</strong>
-                <input name="loginValue" type="text">
+                <input name="UserID" type="text">
             </p>
 
             <p><strong>Password:</strong>
-                <input name="pwValue" type="password"></p>
+                <input name="Password" type="password"></p>
             <p><input type=submit></p>
         </form>
     </div>
@@ -53,7 +53,7 @@
             <option value="Driver">Driver</option>
         </select></p>
     </div>
-    <div><form action="login.jsp">
+    <div><form action="user_login.jsp">
         <p style="text-align: center;"><input type="submit" value="Login" /></p>
     </form></div>
     <div>
@@ -99,7 +99,7 @@
 <div>
     <h1 style="text-align: center;"><span style="color: #ff6600;"><img src="https://html-online.com/editor/tinymce4_6_5/plugins/emoticons/img/smiley-cool.gif" alt="cool" /> Welcome to U-UBER<img src="https://html-online.com/editor/tinymce4_6_5/plugins/emoticons/img/smiley-cool.gif" alt="cool" /></span></h1>
 </div>
-<div style="text-align: center;"><form action="login.jsp" method="get" name="UserIDInfo">
+<div style="text-align: center;"><form action="user_login.jsp" method="get" name="UserIDInfo">
     <%--<p>&lt;%--<input name="searchAttribute" type="hidden" value="login" />--%&gt;</p>--%>
     <p><strong>Login ID:</strong>&nbsp;<input name="UserID" type="text" /></p>
     <p><strong>Password:</strong>&nbsp;<input name="Password" type="password" /></p>
@@ -122,7 +122,7 @@
         <option value="Driver">Driver</option>
     </select></p>
 </div>
-<div><form action="login.jsp">
+<div><form action="user_login.jsp">
     <p style="text-align: center;"><input type="submit" value="Login" /></p>
 </form></div>
 <div>
