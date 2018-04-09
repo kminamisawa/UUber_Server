@@ -21,6 +21,7 @@
 <%
     String vin = request.getParameter("VIN");
     String date = request.getParameter("date");
+    String selected_PID = request.getParameter("PID");
     if(vin == null || date == null){
 %>
 
@@ -74,18 +75,41 @@ The car is not available on the date you selected.
 
 %>
 
-The first pid is <%= pid_list.get(0)%><br />
-The following is the available PID:<br />
+<form method="get" action="reservation.jsp">
+    The following is the available PID:<br />
+    <p>
+    <select name=”PID”　id="select_pid"　required>
+        <c:forEach var="item" items="${pids}">
+            <option value=”${item}”>${item}</option>
+        </c:forEach>
+    </select>
+    </p>
+        <p><input type="submit" value="送信する"></p>
+</form>
 
-<c:forEach var="item" items="${pids}">
 
-    <%--<c:out value="${item}" /><br />--%>
-    <%--request.setAttribute("selected_pid", availablePid);--%>
-    <a href="reservation.jsp?id=${item}">${item}</a><br />
-</c:forEach>
+<%--<c:forEach var="item" items="${pids}">--%>
+
+    <%--&lt;%&ndash;<c:out value="${item}" /><br />&ndash;%&gt;--%>
+    <%--&lt;%&ndash;request.setAttribute("selected_pid", availablePid);&ndash;%&gt;--%>
+    <%--<a href="reservation.jsp?id=${item}">${item}</a><br />--%>
+
+    <%--&lt;%&ndash;<a href="reservation.jsp?id=${item}">${item}</a><br />&ndash;%&gt;--%>
+<%--</c:forEach>--%>
 
 <%
-            con.closeConnection();
+
+//                selected_PID = (String) request.getParameter("PID");
+                if(request.getParameter("PID") != null || selected_PID != null){
+
+
+%>
+
+The selected PID is <%= selected_PID%> Damn it
+
+<%
+                }
+                con.closeConnection();
             }
         }
     }
