@@ -5,10 +5,8 @@
     String loginID = request.getParameter("UserID");
     String password = request.getParameter("Password");
 
-    if (!loginID.isEmpty() && loginID != null && !password.isEmpty() && password != null){
-        UUser new_user = (UUser) API.Login_User(true, loginID, password, con.stmt);
-        String new_user_id = new_user.getName();
-    }
+    UUser new_user = (UUser) API.Login_User(true, loginID, password, con.stmt);
+    String new_user_id = new_user.getName();
 %>
 <html>
 <head>
