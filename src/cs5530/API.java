@@ -79,6 +79,51 @@ public class API {
 
     }
 
+    public static String[] Get_Available_Hours(String pid, Statement stmt)
+    {
+        String Available_Hours[] = new String[2];
+        String sql = "select P.fromHour, P.toHour from Period P where P.pid = '" + pid + "';";
+
+        ResultSet rs = null;
+
+        try{
+            rs = stmt.executeQuery(sql);
+
+            if (rs == null){
+                System.out.println("Null detected");
+            }
+
+            int count = 0;
+            while (rs.next()){
+                Available_Hours[0] = rs.getString("fromHour");
+                Available_Hours[1] = rs.getString("toHour");
+            }
+
+            rs.close();
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+
+            System.out.println("cannot execute the query");
+        }
+        finally {
+            try{
+                if (rs!=null && !rs.isClosed()){
+                    rs.close();
+                }
+            }
+            catch(Exception e){
+                System.out.println("cannot close resultset");
+            }
+        }
+
+        if(Available_Hours[0] == null || Available_Hours[0].isEmpty()) {
+            return new String[];
+        }
+
+        return Available_Hours;
+    }
+
 
     public static boolean Registration_UDriver(UD driver, Statement stmt) {
         String sql="INSERT INTO UD VALUES ('"+ driver.getLogin_ID() + "','" + driver.getPw() + "','"
