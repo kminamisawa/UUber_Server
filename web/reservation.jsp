@@ -19,12 +19,19 @@
 <body>
 <h1 style="text-align: center;"><span style="color: #ff6600;">UUber&nbsp;Reservation</span></h1>
 <%
+    Connector2 con = new Connector2();
     String vin = request.getParameter("VIN");
     String date = request.getParameter("date");
     String selected_PID = request.getParameter("PID");
+
+    if (selected_PID != null){
+%>
+OMG it's working man <%=selected_PID%>
+
+<%
+    }
     if(vin == null || date == null){
 %>
-
 <h2 style="text-align: center;"><span style="color: #0000ff;">Please Fill in Following Information:</span></h2>
 <h3 style="text-align: center;">
     <form name="UserIDInfo" method=get onsubmit="return check_all_fields(this)" action="reservation.jsp">
@@ -42,12 +49,11 @@
 
 <%
     }else{
-        Connector2 con = new Connector2();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date parsed = format.parse(date);
         java.sql.Date sql_date = new java.sql.Date(parsed.getTime());
         Date dd = new Date(Calendar.getInstance().getTime().getTime());
-        ArrayList<String> availablePid = new ArrayList<>();
+        ArrayList<String> availablePid;
 
         if (dd.compareTo(sql_date)>0) // past
         {
@@ -75,16 +81,23 @@ The car is not available on the date you selected.
 
 %>
 
-<form method="get" action="reservation.jsp">
+<form method="POST" action="reservation.jsp">
     The following is the available PID:<br />
     <p>
-    <select name=”PID”　id="select_pid"　required>
-        <c:forEach var="item" items="${pids}">
-            <option value=”${item}”>${item}</option>
-        </c:forEach>
-    </select>
+    <form action="Damn" method="POST">
+        <select name="PID" >
+            <c:forEach var="item" items="${pids}">
+            <option>${item}</option>
+            </c:forEach>
+        </select>
+        <input type="submit"/>
+    </form>
+    <%--<select name=”PID_Dropdown”　id="select_pid"　required>--%>
+        <%--<c:forEach var="item" items="${pids}">--%>
+            <%--<option value=”${item}”>${item}</option>--%>
+        <%--</c:forEach>--%>
+    <%--</select>--%>
     </p>
-        <p><input type="submit" value="送信する"></p>
 </form>
 
 
@@ -100,19 +113,11 @@ The car is not available on the date you selected.
 <%
 
 //                selected_PID = (String) request.getParameter("PID");
-                if(request.getParameter("PID") != null || selected_PID != null){
 
-
-%>
-
-The selected PID is <%= selected_PID%> Damn it
-
-<%
-                }
-                con.closeConnection();
             }
         }
     }
+    con.closeConnection();
 %>
 </body>
 </html>
