@@ -15,6 +15,18 @@
 <html>
 <head>
     <title>Title</title>
+    <script LANGUAGE="javascript">
+        function myEnter(){
+            myRet = confirm("Do you confirm this reservation?");
+            if ( myRet == true ){
+                alert("Reservation Confirmed");
+                return true;
+            }else{
+                alert("Reservation Cancelled");
+                return false;
+            }
+        }
+    </script>
 </head>
 <body>
 <h1 style="text-align: center;"><span style="color: #ff6600;">UUber&nbsp;Reservation</span></h1>
@@ -24,7 +36,14 @@
     String date = request.getParameter("date");
     String cost = request.getParameter("cost");
     String selected_PID = request.getParameter("PID");
-    if((vin == null || date == null || cost == null) && selected_PID == null){
+
+    String get_PID = (String) session.getAttribute("selected_PID");
+    String get_date = (String) session.getAttribute("date");
+    String get_vin = (String) session.getAttribute("vin");
+    String get_cost = (String) session.getAttribute("cost");
+
+    boolean in_confirmation_state = false;
+    if((vin == null || date == null || cost == null) && selected_PID == null && !in_confirmation_state){
 %>
 
 <h2 style="text-align: center;"><span style="color: #0000ff;">Please Fill in Following Information:</span></h2>
@@ -116,13 +135,15 @@ To: <%=hour[1]%><br>
 <%
             }
         }
-    }else {
+    }else if (!in_confirmation_state){
         session.setAttribute("selected_PID", selected_PID);
-        String get_PID = (String) session.getAttribute("selected_PID");
-        String get_date = (String) session.getAttribute("date");
-        String get_vin = (String) session.getAttribute("vin");
-        String get_cost = (String) session.getAttribute("cost");
+        get_PID = (String) session.getAttribute("selected_PID");
+        get_date = (String) session.getAttribute("date");
+        get_vin = (String) session.getAttribute("vin");
+        get_cost = (String) session.getAttribute("cost");
         String[] reserved_hour = API.GetFromToHour(get_PID, con.stmt);
+        in_confirmation_state = true;
+        session.setAttribute("conf_state", in_confirmation_state);
 %>
 
     Please Confirm Your Reservation:<br>
@@ -131,6 +152,17 @@ To: <%=hour[1]%><br>
     From: <%=reserved_hour[0]%><br>
     To: <%=reserved_hour[1]%><br>
     Cost: <%=get_cost%><br>
+
+<form name="reservation" method=get onsubmit="return myEnter()" action="reservation.jsp">
+    <input type=submit value="Reserve">
+</form>
+<%
+    }else if (in_confirmation_state){
+
+
+%>
+
+Reservation Confirmation Demo
 
 <%
     }
