@@ -11,26 +11,72 @@ import java.util.Calendar;
  */
 public class API {
 
-    public static void update(String sql, Statement stmt){
+    public static boolean update(String sql, Statement stmt){
 //        System.out.println("executing "+sql);
         try{
             stmt.executeUpdate(sql);
+            return true;
         }
         catch(Exception e)
         {
             System.out.println("cannot execute the query" + e);
+            return false;
         }
     }
 
+    public static boolean ID_ISAvailable(String id, Statement stmt)
+    {
+        String sql = "select * from UU u where u.login = '" + id + "';";
 
-    public static void Registration_UUser(UUser user, Statement stmt) {
+        ResultSet rs = null;
+        String loginID = "";
+
+        try{
+            rs = stmt.executeQuery(sql);
+
+            if (rs == null){
+                System.out.println("Null detected");
+            }
+
+            while (rs.next()){
+                 loginID = rs.getString("login");
+            }
+
+            rs.close();
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+
+            System.out.println("cannot execute the query");
+        }
+        finally {
+            try{
+                if (rs!=null && !rs.isClosed()){
+                    rs.close();
+                }
+            }
+            catch(Exception e){
+                System.out.println("cannot close resultset");
+            }
+        }
+
+        if(loginID == null || loginID.isEmpty()) {
+            return true;
+        }
+
+        return false;
+    }
+
+
+    public static boolean Registration_UUser(UUser user, Statement stmt) {
 
 
         String sql="INSERT INTO UU VALUES ('"+ user.getLogin_ID() + "','" + user.getPw() + "','"
                 +  user.getName() + "','" + user.getAddress() + "','" + user.getCity() + "','"
                 + user.getState() + "','" + user.getPhone() + "');";
         System.out.println("Executed SQL: " + sql);
-        update(sql, stmt);
+        return update(sql, stmt);
+
     }
 
 
