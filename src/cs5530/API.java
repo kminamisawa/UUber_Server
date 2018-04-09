@@ -152,7 +152,8 @@ public class API {
                 System.err.println("The year must be typed in with numbers.");
                 return;
             }
-        }else{
+        }
+        else{
             sql = "UPDATE UC SET " + col + " = '" + new_value + "' WHERE login = '" + car.getLogin() + "' and vin = '" + car.getVin() + "';";
         }
 
