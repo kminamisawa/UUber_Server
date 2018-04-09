@@ -6,19 +6,19 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<<<<<<< HEAD
 <html>
 <head>
     <script LANGUAGE="javascript">
 
         function check_all_fields(form_obj){
-            alert(form_obj.searchAttribute.value+"='"+form_obj.attributeValue.value+"'");
-            if( form_obj.attributeValue.value == ""){
-                alert("Search field should be nonempty");
-                window.print("False man");
+            // alert(form_obj.searchAttribute.value+"='"+form_obj.attributeValue.value+"'");
+            if( form_obj.loginValue.value == ""){
+                alert("Login field should be nonempty");
+                return false;
+            }else if( form_obj.pwValue.value == ""){
+                alert("Password field should be nonempty");
                 return false;
             }
-            window.print("True man");
             return true;
         }
 
@@ -31,15 +31,12 @@
     </div>
     <div style="text-align: center;">
         <form name="UserIDInfo" method=get onsubmit="return check_all_fields(this)" action="login.jsp">
-            <%--<p>&lt;%--<input name="searchAttribute" type="hidden" value="login" />--%&gt;</p>--%>
             <p><strong>Login ID:</strong>
-                <input type=hidden name="searchAttribute" value="LoginID">
-                <input name="attributeValue" type="text">
+                <input name="loginValue" type="text">
             </p>
 
             <p><strong>Password:</strong>
-                <input type=hidden name="searchAttribute" value="Password">
-                <input name="attributeValue" type="password"></p>
+                <input name="pwValue" type="password"></p>
             <p><input type=submit></p>
         </form>
     </div>
@@ -99,7 +96,6 @@
         <p style="text-align: center;"><input type="submit" value="Register" /></p>
     </form></div>
 </body>
-=======
 <div>
     <h1 style="text-align: center;"><span style="color: #ff6600;"><img src="https://html-online.com/editor/tinymce4_6_5/plugins/emoticons/img/smiley-cool.gif" alt="cool" /> Welcome to U-UBER<img src="https://html-online.com/editor/tinymce4_6_5/plugins/emoticons/img/smiley-cool.gif" alt="cool" /></span></h1>
 </div>
@@ -168,4 +164,3 @@
 <div><form action="http://google.com">
     <p style="text-align: center;"><input type="submit" value="Register" /></p>
 </form></div>
->>>>>>> ecd0453ae3d51fd0aa6f3b11ab0c813e1b02ae13
