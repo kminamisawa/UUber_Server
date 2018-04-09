@@ -134,11 +134,11 @@ public class API {
     }
 
 
-    public static void Add_New_Car(UC car, Statement stmt) {
+    public static boolean Add_New_Car(UC car, Statement stmt) {
         String sql="INSERT INTO UC VALUES ('"+ car.getVin() + "','" +  car.getCategory() + "','"
                 + car.getMake()+ "','" + car.getModel() + "','" + car.getYear() + "','" + car.getLogin() + "');";
         System.out.println("Executed SQL: " + sql);
-        update(sql, stmt);
+        return update(sql, stmt);
     }
 
 
