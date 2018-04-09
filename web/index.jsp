@@ -6,44 +6,35 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <script LANGUAGE="javascript">
-
-        function check_all_fields(form_obj){
-            alert(form_obj.searchAttribute.value+"='"+form_obj.attributeValue.value+"'");
-            if( form_obj.attributeValue.value == ""){
-                alert("Search field should be nonempty");
-                return false;
-            }
-            return true;
-        }
-
-    </script>
-</head>
-<body>
 <div>
     <h1 style="text-align: center;"><span style="color: #ff6600;"><img src="https://html-online.com/editor/tinymce4_6_5/plugins/emoticons/img/smiley-cool.gif" alt="cool" /> Welcome to U-UBER<img src="https://html-online.com/editor/tinymce4_6_5/plugins/emoticons/img/smiley-cool.gif" alt="cool" /></span></h1>
 </div>
-<div style="text-align: center;"><form action="login.jsp" method="get" onsubmit="return check_all_fields(this)" name="UserIDInfo">
+<div style="text-align: center;"><form action="login.jsp" method="get" name="UserIDInfo">
     <%--<p>&lt;%--<input name="searchAttribute" type="hidden" value="login" />--%&gt;</p>--%>
     <p><strong>Login ID:</strong>&nbsp;<input name="UserID" type="text" /></p>
     <p><strong>Password:</strong>&nbsp;<input name="Password" type="password" /></p>
-        <p style="text-align: center;" name="asdf"><select>
+        <p style="text-align: center;"><select id="ddlViewBy">
             <option value="User">User</option>
             <option value="Driver">Driver</option>
         </select></p>
-
-
-    <p><input type="submit" value="Login"/></p>
-
+    <p><input type="submit" /></p>
 </form></div>
+<div>
+    <p style="text-align: center;"><strong> Login id:&nbsp;</strong><input maxlength="20" name="name" size="15" type="text" /></p>
+</div>
+<div>
+    <p style="text-align: center;"><strong>Password:&nbsp;</strong><input maxlength="4" name="pass" size="15
+          " type="password" /></p>
+</div>
 <div>
     <p style="text-align: center;"><select>
         <option value="User">User</option>
         <option value="Driver">Driver</option>
     </select></p>
 </div>
+<div><form action="login.jsp">
+    <p style="text-align: center;"><input type="submit" value="Login" /></p>
+</form></div>
 <div>
     <p style="text-align: center;">&nbsp;</p>
 </div>
@@ -83,4 +74,3 @@
 <div><form action="http://google.com">
     <p style="text-align: center;"><input type="submit" value="Register" /></p>
 </form></div>
-</body>
