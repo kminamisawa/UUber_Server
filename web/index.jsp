@@ -6,10 +6,26 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <script LANGUAGE="javascript">
+
+        function check_all_fields(form_obj){
+            alert(form_obj.searchAttribute.value+"='"+form_obj.attributeValue.value+"'");
+            if( form_obj.attributeValue.value == ""){
+                alert("Search field should be nonempty");
+                return false;
+            }
+            return true;
+        }
+
+    </script>
+</head>
+<body>
 <div>
     <h1 style="text-align: center;"><span style="color: #ff6600;"><img src="https://html-online.com/editor/tinymce4_6_5/plugins/emoticons/img/smiley-cool.gif" alt="cool" /> Welcome to U-UBER<img src="https://html-online.com/editor/tinymce4_6_5/plugins/emoticons/img/smiley-cool.gif" alt="cool" /></span></h1>
 </div>
-<div style="text-align: center;"><form action="login.jsp" method="get" name="UserIDInfo">
+<div style="text-align: center;"><form action="login.jsp" method="get" onsubmit="return check_all_fields(this)" name="UserIDInfo">
     <%--<p>&lt;%--<input name="searchAttribute" type="hidden" value="login" />--%&gt;</p>--%>
     <p><strong>Login ID:</strong>&nbsp;<input name="UserID" type="text" /></p>
     <p><strong>Password:</strong>&nbsp;<input name="Password" type="password" /></p>
@@ -70,3 +86,4 @@
 <div><form action="http://google.com">
     <p style="text-align: center;"><input type="submit" value="Register" /></p>
 </form></div>
+</body>
