@@ -17,14 +17,29 @@
     <title>Title</title>
     <script LANGUAGE="javascript">
         function myEnter(){
-            myRet = confirm("Do you confirm this reservation?");
-            if ( myRet == true ){
-                alert("Reservation Confirmed");
+            var myRet = confirm("Do you confirm this reservation?");
+            if ( myRet === true ){
+                alert("Confirmed");
                 return true;
             }else{
-                alert("Reservation Cancelled");
+                alert("Reservation is not confirmed");
                 return false;
             }
+        }
+
+        function cancel_reservation(){
+            var cancel_confirmation = confirm("Are you sure you want to go back the the main menu? You cannot undo this action.");
+            if ( cancel_confirmation === true ){
+                alert("Reservation Cancelled.");
+                return true;
+            }else{
+                // alert("Reservation Cancelled");
+                return false;
+            }
+        }
+
+        function goBack() {
+            window.history.back();
         }
     </script>
 </head>
@@ -76,7 +91,12 @@
     {
 %>
 
-The reserved date is in the past.
+<h3 style="text-align: center;"><span style="color: #ff0000;">The reserved date is in the past!</span></h3>
+
+<div style="text-align:center">
+<button onclick="goBack()">Go Back</button>
+</div>
+
 
 <%
 }else{
@@ -85,7 +105,12 @@ The reserved date is in the past.
     if(availablePid.isEmpty())
     {
 %>
-The car is not available on the date you selected.
+<h3 style="text-align: center;"><span style="color: #ff0000;">The car is not available on the date you selected!</span></h3>
+
+<div style="text-align:center">
+    <button onclick="goBack()">Go Back</button>
+</div>
+
 
 <%
 }else{
@@ -97,29 +122,28 @@ The car is not available on the date you selected.
     ArrayList<String> pid_list = (ArrayList<String>)request.getAttribute("pids");
 %>
 
-The following is the available PID.<br>
+<h2 style="text-align: center;"><span style="color: #0000ff;"><strong>The following is the available PID.</strong></span></h2><br>
 
 <%
     for (String each_pid : pid_list){
 %>
 
-PID: <%=each_pid%> <br>
+<h3 style="text-align: center;"><strong>PID: <%=each_pid%></strong></h3>
 
 <%
     String[] hour = API.GetFromToHour(each_pid, con.stmt);
 %>
 
-From: <%=hour[0]%><br>
-To: <%=hour[1]%><br>
-<br>
-<br>
+<p style="text-align: center;">
+    <em>From: <%=hour[0]%></em><br>
+    <em>To: <%=hour[1]%></em></p>
 <%
     }
 %>
 
 <form method="GET" action="reservation.jsp">
-    Please select the available PID:<br />
-    <p>
+    <h3 style="text-align: center;"><span style="color: #0000ff;">Please select the available PID:</span></h3>
+    <p style="text-align: center;">
     <form action="Damn" method="POST">
         <select name="PID" >
             <c:forEach var="item" items="${pids}">
@@ -144,16 +168,39 @@ To: <%=hour[1]%><br>
     String[] reserved_hour = API.GetFromToHour(get_PID, con.stmt);
 %>
 
-Please Confirm Your Reservation:<br>
-Date: <%=get_date%><br>
-VIN: <%=get_vin%><br>
-From: <%=reserved_hour[0]%><br>
-To: <%=reserved_hour[1]%><br>
-Cost: <%=get_cost%><br>
+<h2 style="text-align: center;"><span style="color: #0000ff;"><strong>Please Confirm Your Reservation:</strong></span></h2>
+<h3 style="text-align: center;">
+    Date: <%=get_date%><br />
+    VIN: <%=get_vin%><br />
+    From: <%=reserved_hour[0]%><br />
+    To: <%=reserved_hour[1]%><br />
+    Cost: $<%=get_cost%></h3>
 
+<div style="text-align:center">
 <form name="reservation" method=get onsubmit="return myEnter()" action="confirmation.jsp">
-    <input type=submit value="Reserve">
+    <input type=submit value="Reserve" />
 </form>
+</div>
+
+<div style="text-align:center">
+<form name="reservation_cancel" method=get onsubmit="return cancel_reservation()" action="user_login.jsp">
+    <input name="test" type=submit value="Cancel the Reservation"/>
+</form>
+</div>
+
+<%--<form method="GET" action="reservation.jsp">--%>
+    <%--<h3 style="text-align: center;"><span style="color: #0000ff;">Please select the available PID:</span></h3>--%>
+    <%--<p style="text-align: center;">--%>
+    <%--<form action="Damn" method="POST">--%>
+        <%--<select name="PID" >--%>
+            <%--<c:forEach var="item" items="${pids}">--%>
+                <%--<option>${item}</option>--%>
+            <%--</c:forEach>--%>
+        <%--</select>--%>
+        <%--<input type="submit"/>--%>
+    <%--</form>--%>
+    <%--</p>--%>
+<%--</form>--%>
 <%
     }
     con.closeConnection();

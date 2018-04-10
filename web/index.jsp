@@ -7,10 +7,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<%
-    Connector2 con = new Connector2();
-%>
 <html>
 <head>
     <%--<script LANGUAGE="javascript">--%>
@@ -121,7 +117,5 @@
         <a href="Driver_Index.jsp">Are you a Driver?</a><br />
     </form>
 </div>
-<%
-    con.closeConnection();
-%>
+
 </body>

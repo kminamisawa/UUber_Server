@@ -4,12 +4,23 @@
 <html>
 <head>
     <title>JSP Sample</title>
+    <script LANGUAGE="javascript">
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </head>
 <body>
 <%
     Connector2 con = new Connector2();
     String loginID = request.getParameter("UserID");
     String password = request.getParameter("Password");
+
+    // Initialize the attributes in case user was refered from reservation.jsp or confirmation.jsp
+    session.removeAttribute("selected_PID");
+    session.removeAttribute("sql_date");
+    session.removeAttribute("vin");
+    session.removeAttribute("cost");
 
     UUser new_user = null;
     if(loginID != null && password != null)
@@ -20,8 +31,12 @@
     }
     if(new_user == null){
 %>
+    <h1 style="text-align: center;"><span style="color: #ff6600;"><strong>UUber Login</strong></span></h1>
+    <h3 style="text-align: center;"><span style="color: #ff0000;">User could not be found. Please check you have the correct credentials.</span></h3>
 
-    Invalid user man.
+    <div style="text-align:center">
+        <button onclick="goBack()">Go Back</button>
+    </div>
 
 <%
     }else{
@@ -42,14 +57,14 @@
     6. Add a Trusted User<br />
     7. Browse UC<br />
     8. See Useful Feedback<br />
-    9. See the Most Popular UC<br />
-    10. See the Most Expensive UC<br />
-    11. See Highly Rated UD<br />
-    12. Check Degrees of Separation<br />
-    13. Exit</h3>
+    <%--9. See the Most Popular UC<br />--%>
+    <%--10. See the Most Expensive UC<br />--%>
+    <%--11. See Highly Rated UD<br />--%>
+    <%--12. Check Degrees of Separation<br />--%>
+    9. Exit</h3>
 <%
-        con.closeConnection();
     }
+    con.closeConnection();
 %>
 </body>
 </html>

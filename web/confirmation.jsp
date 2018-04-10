@@ -43,7 +43,12 @@ Cost: <%=get_cost%><br>
 There was an Error with the reservation. Please try again.
 <%
     }
+
     con.closeConnection();
 %>
+<form name="back_to_menu" method=get action="user_login.jsp">
+    <input type=submit value="Back to the Main Menu">
+</form>
+
 </body>
 </html>
