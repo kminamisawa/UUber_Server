@@ -28,7 +28,7 @@
         }
 
         function cancel_reservation(){
-            var cancel_confirmation = confirm("Are you sure you want to go back the the main menu? You cannot undo this action.");
+            var cancel_confirmation = confirm("Are you sure you want to go back to the the main menu? You cannot undo this action.");
             if ( cancel_confirmation === true ){
                 alert("Reservation Cancelled.");
                 return true;
@@ -149,7 +149,7 @@
 <form method="GET" action="reservation.jsp">
     <h3 style="text-align: center;"><span style="color: #0000ff;">Please select the available PID:</span></h3>
     <p style="text-align: center;">
-    <form action="Damn" method="POST">
+    <form action="select_pid" method="POST">
         <select name="PID" >
             <c:forEach var="item" items="${pids}">
                 <option>${item}</option>

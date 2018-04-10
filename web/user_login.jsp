@@ -16,11 +16,20 @@
     String loginID = request.getParameter("UserID");
     String password = request.getParameter("Password");
 
-    // Initialize the attributes in case user was refered from reservation.jsp or confirmation.jsp
+    // Initialize the attributes in case user was refereed from reservation.jsp or confirmation.jsp
     session.removeAttribute("selected_PID");
     session.removeAttribute("sql_date");
     session.removeAttribute("vin");
     session.removeAttribute("cost");
+
+    // Initialize the attributes in case user was refereed from Record_Ride.jsp or Confirmation_Record.jsp
+    session.removeAttribute("Record_Ride_From");
+    session.removeAttribute("Record_Ride_To");
+    session.removeAttribute("Record_Ride_count");
+    session.removeAttribute("Record_Ride_VIN");
+    session.removeAttribute("Record_Ride_PID");
+    session.removeAttribute("Record_Ride_cost");
+    session.removeAttribute("Record_Ride_date");
 
     UUser new_user = null;
     if(loginID != null && password != null)
