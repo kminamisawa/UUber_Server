@@ -52,8 +52,8 @@ Invalid user man.
     </form>
 </h3>
 <%
-        con.closeConnection();
     }
+    con.closeConnection();
 %>
 </body>
 </html>

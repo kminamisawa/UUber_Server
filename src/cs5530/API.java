@@ -810,11 +810,11 @@ public class API {
      * @param date date of the ride
      * @param stmt
      */
-    public static void User_Add_Reservation(String login, String vin, String pid, double cost, Date date, Statement stmt)
+    public static boolean User_Add_Reservation(String login, String vin, String pid, double cost, Date date, Statement stmt)
     {
         String sql = "INSERT INTO Reserve VALUES ('"+ login+"', '"+vin+"', '"+pid+"', "+cost+", '"+date.toString()+"');" ;
         System.out.println("Executed SQL: " + sql);
-        update(sql, stmt);
+        return update(sql, stmt);
     }
 
 
@@ -829,11 +829,11 @@ public class API {
      * @param toHour ride end time
      * @param stmt
      */
-    public static void User_Record_Ride(String cost,Date date,String vin,String login,Time fromHour,Time toHour, Statement stmt)
+    public static boolean User_Record_Ride(String cost,Date date,String vin,String login,Time fromHour,Time toHour, Statement stmt)
     {
         String sql = "INSERT INTO Ride (cost, date, vin, login, fromHour, toHour ) VALUES ("+ cost+", '"+date.toString()+"', '"+vin+"', '"+login+"', '"+fromHour.toString()+"', '"+toHour.toString()+"');" ;
         System.out.println("Executed SQL: " + sql);
-        update(sql, stmt);
+        return update(sql, stmt);
     }
 
     /**

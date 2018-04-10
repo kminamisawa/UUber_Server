@@ -7,10 +7,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<%
-    Connector2 con = new Connector2();
-%>
 <html>
 <head>
     <%--<script LANGUAGE="javascript">--%>
@@ -65,7 +61,7 @@
 </div>
 <div style="text-align: center;">
     <%--<form name="UserIDInfo" method=get onsubmit="return check_all_fields(this)" action="login.jsp">--%>
-    <form name="UserIDInfo" method=get action="user_login.jsp">
+    <form name="UserIDInfo" method=get action="User_Login.jsp">
 
         <p><strong>Login ID:</strong>
             <input name="UserID" type="text" required pattern=".*\S+.*">
@@ -121,7 +117,5 @@
         <a href="Driver_Index.jsp">Are you a Driver?</a><br />
     </form>
 </div>
-<%
-    con.closeConnection();
-%>
+
 </body>
