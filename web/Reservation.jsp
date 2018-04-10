@@ -62,7 +62,7 @@
 
 <h2 style="text-align: center;"><span style="color: #0000ff;">Please Fill in Following Information:</span></h2>
 <h3 style="text-align: center;">
-    <form name="UserIDInfo" method=get onsubmit="return check_all_fields(this)" action="reservation.jsp">
+    <form name="UserIDInfo" method=get onsubmit="return check_all_fields(this)" action="Reservation.jsp">
         <p><strong>1. VIN Number:</strong>
             <input name="VIN" type="text" required pattern=".*\S+.*">
         </p>
@@ -78,7 +78,7 @@
         <p><input type=submit value="Check Availability"></p>
     </form>
 
-    <form name="back_to_menu" method=get action="user_login.jsp">
+    <form name="back_to_menu" method=get action="User_Login.jsp">
         <input type=submit value="Back to the Main Menu">
     </form>
 
@@ -146,7 +146,7 @@
     }
 %>
 
-<form method="GET" action="reservation.jsp">
+<form method="GET" action="Reservation.jsp">
     <h3 style="text-align: center;"><span style="color: #0000ff;">Please select the available PID:</span></h3>
     <p style="text-align: center;">
     <form action="select_pid" method="POST">
@@ -182,30 +182,17 @@
     Cost: $<%=get_cost%></h3>
 
 <div style="text-align:center">
-<form name="reservation" method=get onsubmit="return myEnter()" action="confirmation.jsp">
+<form name="reservation" method=get onsubmit="return myEnter()" action="Confirmation_Reservation.jsp">
     <input type=submit value="Reserve" />
 </form>
 </div>
 
 <div style="text-align:center">
-<form name="reservation_cancel" method=get onsubmit="return cancel_reservation()" action="user_login.jsp">
+<form name="reservation_cancel" method=get onsubmit="return cancel_reservation()" action="User_Login.jsp">
     <input name="test" type=submit value="Cancel the Reservation"/>
 </form>
 </div>
 
-<%--<form method="GET" action="reservation.jsp">--%>
-    <%--<h3 style="text-align: center;"><span style="color: #0000ff;">Please select the available PID:</span></h3>--%>
-    <%--<p style="text-align: center;">--%>
-    <%--<form action="Damn" method="POST">--%>
-        <%--<select name="PID" >--%>
-            <%--<c:forEach var="item" items="${pids}">--%>
-                <%--<option>${item}</option>--%>
-            <%--</c:forEach>--%>
-        <%--</select>--%>
-        <%--<input type="submit"/>--%>
-    <%--</form>--%>
-    <%--</p>--%>
-<%--</form>--%>
 <%
     }
     con.closeConnection();

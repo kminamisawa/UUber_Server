@@ -75,7 +75,7 @@ There was an Error with the reservation. Please try again.
     con.closeConnection();
 %>
 <div style="text-align:center">
-<form name="back_to_menu" method=get action="user_login.jsp">
+<form name="back_to_menu" method=get action="User_Login.jsp">
     <input type=submit value="Back to the Main Menu">
 </form>
 </div>

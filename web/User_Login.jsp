@@ -16,7 +16,7 @@
     String loginID = request.getParameter("UserID");
     String password = request.getParameter("Password");
 
-    // Initialize the attributes in case user was refereed from reservation.jsp or confirmation.jsp
+    // Initialize the attributes in case user was refereed from Reservation.jsp or Confirmation_Reservation.jsp
     session.removeAttribute("selected_PID");
     session.removeAttribute("sql_date");
     session.removeAttribute("vin");
@@ -58,8 +58,8 @@
 <h1 style="text-align: center;"><span style="color: #ff6600;"><strong>Welcome Back to the UUber, <%= user_name %>!</strong></span></h1>
 <h2 style="text-align: center;"><span style="color: #0000ff;">Please Select Your Option:</span></h2>
 <h3 style="text-align: center;">
-    1. <a href="reservation.jsp">Make Reservation</a><br />
-    2. <a href="Rcord_Ride.jsp">Record a Ride</a><br />
+    1. <a href="Reservation.jsp">Make Reservation</a><br />
+    2. <a href="Record_Ride.jsp">Record a Ride</a><br />
     3. Add a Favorite Car<br />
     4. Give a Feedback<br />
     5. Rate a Feedback<br />

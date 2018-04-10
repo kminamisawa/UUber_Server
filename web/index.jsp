@@ -61,7 +61,7 @@
 </div>
 <div style="text-align: center;">
     <%--<form name="UserIDInfo" method=get onsubmit="return check_all_fields(this)" action="login.jsp">--%>
-    <form name="UserIDInfo" method=get action="user_login.jsp">
+    <form name="UserIDInfo" method=get action="User_Login.jsp">
 
         <p><strong>Login ID:</strong>
             <input name="UserID" type="text" required pattern=".*\S+.*">

@@ -32,10 +32,10 @@
         function myEnter(){
             var myRet = confirm("Do you confirm to record this ride?");
             if (myRet === true ){
-                alert("Confirmed.");
+                // alert("Confirmed.");
                 return true;
             }else{
-                alert("Cancelled.");
+                // alert("Cancelled.");
                 return false;
             }
         }
@@ -43,7 +43,7 @@
         function cancel_reservation(){
             var cancel_confirmation = confirm("Are you sure you want to go back to the the main menu? You cannot undo this action.");
             if ( cancel_confirmation === true ){
-                alert("Reservation Cancelled.");
+                // alert("Reservation Cancelled.");
                 return true;
             }else{
                 // alert("Reservation Cancelled");
@@ -58,7 +58,7 @@
 </head>
 <body>
 
-<h1 style="text-align: center;"><span style="color: #ff6600;"><strong>UUber Record a Ride</strong></span></h1>
+<h1 style="text-align: center;"><span style="color: #ff6600;"><strong>UUber Record Rides</strong></span></h1>
 
 <%
     Connector2 con = new Connector2();
@@ -116,7 +116,7 @@
     <tr>
         <td class="tg-drr2">${Record_Ride_count}</td>
         <td class="tg-drr2">${Record_Ride_VIN}</td>
-        <td class="tg-drr2">${Record_Ride_PID}</td>
+        <td class="tg-drr2">${Record_Ride_cost}</td>
         <td class="tg-drr2">${Record_Ride_date}</td>
         <td class="tg-drr2">${Record_Ride_From}</td>
         <td class="tg-ywyf">${Record_Ride_To}</td>
@@ -128,7 +128,7 @@
 
 </table>
 
-<form method="GET" action="Rcord_Ride.jsp">
+<form method="GET" action="Record_Ride.jsp">
     <h3 style="text-align: center;"><span style="color: #0000ff;">Please select one of the Reservation:</span></h3>
     <p style="text-align: center;">
     <form action="select_reservation" method="POST">
@@ -191,7 +191,7 @@
     <tr>
         <td class="tg-drr2">${Record_Ride_count}</td>
         <td class="tg-drr2">${Record_Ride_VIN}</td>
-        <td class="tg-drr2">${Record_Ride_PID}</td>
+        <td class="tg-drr2">${Record_Ride_cost}</td>
         <td class="tg-drr2">${Record_Ride_date}</td>
         <td class="tg-drr2">${Record_Ride_From}</td>
         <td class="tg-ywyf">${Record_Ride_To}</td>
@@ -199,18 +199,22 @@
 </table>
 
     <div style="text-align:center">
-        <form name="record" method=get onsubmit="return myEnter()" action="Rcord_Ride.jsp">
+        <form name="record" method=get onsubmit="return myEnter()" action="Confirmation_Record.jsp">
             <input type=submit value="Record" />
         </form>
     </div>
 
-    <div style="text-align:center">
-        <form name="record_cancel" method=get onsubmit="return cancel_reservation()" action="user_login.jsp">
-            <input name="cancel" type=submit value="Cancel the Record"/>
-        </form>
-    </div>
 <%
     }
+%>
+
+<div style="text-align:center">
+    <form name="record_cancel" method=get onsubmit="return cancel_reservation()" action="User_Login.jsp">
+        <input name="cancel" type=submit value="Back to the Main Menu"/>
+    </form>
+</div>
+
+<%
     con.closeConnection();
 %>
 </body>
