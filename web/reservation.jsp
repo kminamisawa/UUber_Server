@@ -77,6 +77,11 @@
 
         <p><input type=submit value="Check Availability"></p>
     </form>
+
+    <form name="back_to_menu" method=get action="user_login.jsp">
+        <input type=submit value="Back to the Main Menu">
+    </form>
+
 </h3>
 
 <%
