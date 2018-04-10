@@ -50,7 +50,7 @@
 <h2 style="text-align: center;"><span style="color: #0000ff;">Please Select Your Option:</span></h2>
 <h3 style="text-align: center;">
     1. <a href="reservation.jsp">Make Reservation</a><br />
-    2. <a href="Rcord_Ride.jsp">Record a Ride<br />
+    2. <a href="Rcord_Ride.jsp">Record a Ride</a><br />
     3. Add a Favorite Car<br />
     4. Give a Feedback<br />
     5. Rate a Feedback<br />
