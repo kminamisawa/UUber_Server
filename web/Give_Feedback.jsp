@@ -38,8 +38,8 @@
             <input name="VIN_Give_Feedback" type="text" required pattern=".*\S+.*">
         </p>
 
-        <p><strong>Please enter the score from [1 - 10]:</strong>
-            <input name="Score_Give_Feedback" type="text" required pattern="[1-9]|10">
+        <p><strong>Please enter the score from [0 - 10]. (0 is terrible. 10 is awesome.):</strong>
+            <input name="Score_Give_Feedback" type="text" required pattern="[0-9]|10">
         </p>
 
         <p><strong>Please leave a comment:</strong>
