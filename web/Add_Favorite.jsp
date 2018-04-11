@@ -38,15 +38,15 @@
 </div>
 
 <%
-    }else{
-        Date date = new Date(Calendar.getInstance().getTime().getTime());
-        boolean is_favorited = API.Add_User_Favorite_Car(VIN, user.getLogin_ID(), date, con.stmt);
-        if (is_favorited){
+}else{
+    Date date = new Date(Calendar.getInstance().getTime().getTime());
+    boolean is_favorited = API.Add_User_Favorite_Car(VIN, user.getLogin_ID(), date, con.stmt);
+    if (is_favorited){
 %>
 
 <h2 style="text-align: center;"><span style="color: #2100ff;">The car with VIN: ${Add_Favorite_VIN} is added to your favorites.</span></h2>
 <%
-    }else {
+}else {
 %>
 
 <h2 style="text-align: center;"><span style="color: #ff0000;">The car with VIN: ${Add_Favorite_VIN} is already your favorites.</span></h2>

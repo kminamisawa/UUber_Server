@@ -11,7 +11,7 @@ import java.util.Calendar;
  */
 public class API {
 
-    public static boolean  update(String sql, Statement stmt){
+    public static boolean update(String sql, Statement stmt){
 //        System.out.println("executing "+sql);
         try{
             stmt.executeUpdate(sql);
@@ -371,13 +371,11 @@ public class API {
      * @param rating whether the feedback was useful or not.
      * @param stmt
      */
-    public static void ADD_Feedback_Rating(int rateFid, String login , String rating, Statement stmt)
+    public static boolean ADD_Feedback_Rating(int rateFid, String login , String rating, Statement stmt)
     {
         String sql = "INSERT INTO Rates VALUES ("+ rateFid+", '"+login+"', '"+rating+"');" ;
         System.out.println("Executed SQL: " + sql);
-        update(sql, stmt);
-
-
+        return update(sql, stmt);
     }
 
     /**
@@ -768,9 +766,10 @@ public class API {
      * @param stmt
      * @param sql sql query.
      */
-    private static void show_Feedback_Helper(Statement stmt, String sql)
+    private static ArrayList<String[]> show_Feedback_Helper(Statement stmt, String sql)
     {
         ResultSet rs = null;
+        ArrayList<String[]> feed_back_info = new ArrayList<>();
         try{
             rs=stmt.executeQuery(sql);
 
@@ -780,15 +779,22 @@ public class API {
 
             int count = 0;
             while (rs.next()){
+                String[] feed_back = new String[6];
                 String str1 =  rs.getString("fid");
                 String str2 =  rs.getString("score");
                 String str3 =  rs.getString("text");
                 String str4 = rs.getString("fbdate");
                 String str5 = rs.getString("login");
                 String str6 = rs.getString("vin");
+
+                feed_back[0] = str1;
+                feed_back[1] = str2;
+                feed_back[2] = str3;
+                feed_back[3] = str4;
+                feed_back[4] = str5;
+                feed_back[5] = str6;
+                feed_back_info.add(feed_back);
                 System.out.println( str1 + "\t" + str2 + "\t" + str3 + "\t" + str4 + "\t" + str5+ "\t" + str6);
-
-
             }
 
             rs.close();
@@ -808,22 +814,21 @@ public class API {
                 System.out.println("cannot close resultset");
             }
         }
-
+        return feed_back_info;
     }
 
     /**
      * This method shows all of the feedback in the databases sorted by fid
      * @param stmt
      */
-    public static void Show_Feedack( Statement stmt)
+    public static ArrayList<String[]> Show_Feedack(Statement stmt)
     {
-
         System.out.println("fid\tscore\ttext\tfbdate\tlogin\tvin");
 
         String sql = "select * from Feedback order by fid;";
 
-        ResultSet rs = null;
-        show_Feedback_Helper(stmt, sql);
+        ArrayList<String[]> feedbacks = show_Feedback_Helper(stmt, sql);
+        return feedbacks;
     }
 
     /**
