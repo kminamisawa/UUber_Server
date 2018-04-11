@@ -915,7 +915,7 @@ public class Menus {
             }
         }
 
-        ArrayList<String[]> result = API.UC_Browse(isAND, sortOpA, logged_in_user.getName(), category, city, state, model, con.stmt);
+        ArrayList<String[]> result = API.UC_Browse(isAND, sortOpA, logged_in_user.getLogin_ID(), category, city, state, model, con.stmt);
         if(result.size() <= 0){
             System.out.println("No matching result has found");
         }else{
