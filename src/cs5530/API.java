@@ -340,11 +340,11 @@ public class API {
      * @param Truested whether login2 is trueed by login1 or not (1: trusted 0:not trusted)
      * @param stmt
      */
-    public static void Add_Trusted_User(String login1, String login2, int Truested, Statement stmt)
+    public static boolean Add_Trusted_User(String login1, String login2, int Truested, Statement stmt)
     {
         String sql="INSERT INTO Trust VALUES ('"+ login1 + "','" + login2 + "'," + Truested +");" ;
         System.out.println("Executed SQL: " + sql);
-        update(sql, stmt);
+        return update(sql, stmt);
     }
 
     /**
