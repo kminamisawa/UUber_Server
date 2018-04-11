@@ -168,7 +168,6 @@ public class API {
     public static ArrayList<String[]> ShowYourCar(String login, Statement stmt)
     {
         ArrayList<String[]> result = new ArrayList<>();
-        String[] arr = new String[5];
         String sql = "select vin, category, make, model, year from UC where login = '"+login+"';";
 
         ResultSet rs = null;
@@ -181,6 +180,8 @@ public class API {
             }
 
             while (rs.next()){
+                String[] arr = new String[5];
+
                 arr[0] = rs.getString("vin");
                 arr[1] = rs.getString("category");
                 arr[2] = rs.getString("make");
