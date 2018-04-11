@@ -11,7 +11,7 @@ import java.util.Calendar;
  */
 public class API {
 
-    public static boolean update(String sql, Statement stmt){
+    public static boolean  update(String sql, Statement stmt){
 //        System.out.println("executing "+sql);
         try{
             stmt.executeUpdate(sql);
@@ -869,6 +869,10 @@ public class API {
      */
     public static boolean User_Record_Ride(String cost,Date date,String vin,String login,Time fromHour,Time toHour, Statement stmt)
     {
+        String s = "delete from Ride where cost = "+cost+" and date = '" +date.toString()+"' and vin = '"+vin+"' and login ='" +login +"' and fromHour = '"+fromHour.toString()+"' and toHour='"+toHour.toString()+"';";
+        System.out.println(s);
+
+        update(s, stmt);
         String sql = "INSERT INTO Ride (cost, date, vin, login, fromHour, toHour ) VALUES ("+ cost+", '"+date.toString()+"', '"+vin+"', '"+login+"', '"+fromHour.toString()+"', '"+toHour.toString()+"');" ;
         System.out.println("Executed SQL: " + sql);
         return update(sql, stmt);
