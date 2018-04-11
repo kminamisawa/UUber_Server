@@ -629,7 +629,10 @@ public class Menus {
                 System.out.println("invalid operation hour. Please try again");
         }
 
-        API.Update_UD_OperationHour(startHour, endHour, logged_in_driver.getLogin_ID(), con.stmt);
+        Time st = Time.valueOf(startHour+":00:00");
+        Time et = Time.valueOf(endHour+":00:00");
+
+        API.Update_UD_OperationHour(st, et, logged_in_driver.getLogin_ID(), con.stmt);
 
     }
 

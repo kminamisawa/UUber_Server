@@ -44,7 +44,7 @@
     {
 %>
 
-<h2 style="text-align: center;"><span style="color: #0000ff;">Following is the List of the Reservation You Have Made:</span></h2>
+<h2 style="text-align: center;"><span style="color: #0000ff;">Following is the List of car you own:</span></h2>
 <table class="tg" style="undefined;table-layout: fixed; width: 1004px">
     <colgroup>
         <col style="width: 163px">
@@ -115,6 +115,9 @@
         </select>
         <input type="submit"/>
     </form>
+    <form action="Driver_login.jsp" method="GET">
+        <p style="text-align: center;"><input type="submit" value="Main Menu" /></p>
+    </form>
     </p>
 </form>
 
@@ -148,7 +151,7 @@
         session.setAttribute("Record_Update_count", id);
 
 %>
-<h3 style="text-align: center;"><span style="color: #0000ff;">Below is the Reservation You Selected:</span></h3>
+<h3 style="text-align: center;"><span style="color: #0000ff;">Below is the Car You Selected:</span></h3>
 <table class="tg" style="undefined;table-layout: fixed; width: 1004px">
     <colgroup>
         <col style="width: 163px">
@@ -178,7 +181,7 @@
 
 
 <form method="GET" action="Modify_UC.jsp">
-    <h3 style="text-align: center;"><span style="color: #0000ff;">Please select one of the Car:</span></h3>
+    <h3 style="text-align: center;"><span style="color: #0000ff;">Please select one of the Column:</span></h3>
     <p style="text-align: center;">
     <form action="select_reservation" method="POST">
         <select name="col" >
@@ -192,6 +195,9 @@
         <input type="submit" value="Modify"/>
     </form>
     </p>
+</form>
+<form action="Driver_login.jsp" method="GET">
+    <p style="text-align: center;"><input type="submit" value="Main Menu" /></p>
 </form>
 
 

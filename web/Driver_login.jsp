@@ -46,24 +46,12 @@ Invalid user man.
 <h1 style="text-align: center;"><span style="color: #ff6600;"><strong>Welcome Back to the UUber, <%= user_name %>!</strong></span></h1>
 <h2 style="text-align: center;"><span style="color: #0000ff;">Please Select Your Option:</span></h2>
 <h3 style="text-align: center;">
-    <form action="New_UC.jsp">
-        <%--<%session.setAttribute("login", new_user.getLogin_ID());%>--%>
-        <%--<input type=hidden name="login" value="<%=loginID%>">--%>
-        1. <a href="New_UC.jsp">Add New UC</a><br />
-    </form>
 
-    <%--<form action="Modify_UC.jsp">--%>
-        <%--<%session.setAttribute("login", new_user.getLogin_ID());%>--%>
-    <%--<input type=hidden name="login" value="<%=loginID%>">--%>
-            2. <a href="Modify_UC.jsp">Modifying Existing UC</a><br />
-    <%--</form>--%>
+    1. <a href="New_UC.jsp">Add New UC</a><br />
+    2. <a href="Modify_UC.jsp">Modifying Existing UC</a><br />
+    3. <a href="Operation_Hour.jsp">Add Operation Hour</a><br />
+    4. <a href="Driver_Index.jsp">Exit</a><br />
 
-    3. Add Operation Hour<br />
-
-    <form action="Driver_Index.jsp">
-        <%--<%session.removeAttribute("driver");%>--%>
-        4. <a href="Driver_Index.jsp">Exit</a><br />
-    </form>
 </h3>
 <%
     }
