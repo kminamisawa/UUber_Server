@@ -51,7 +51,7 @@
         <strong>Make: ${item[2]}</strong><br>
         <strong>Model: ${item[3]}</strong><br>
         <strong>Year: ${item[4]}</strong><br>
-        <strong>UU Rented This UC: ${item[5]}</strong><br>
+        <strong>UC Owner: ${item[5]}</strong><br>
         <strong>Ride Count: ${item[6]}</strong><br>
     </p>
 </c:forEach>

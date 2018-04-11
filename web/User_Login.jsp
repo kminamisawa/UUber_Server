@@ -73,7 +73,7 @@
     <%--10. See the Most Expensive UC<br />--%>
     <%--11. See Highly Rated UD<br />--%>
     <%--12. Check Degrees of Separation<br />--%>
-    9. <a href="index.jsp">Logout</a></h3>
+    9. <a href="Logout.jsp">Logout</a></h3>
 <%
     }
     con.closeConnection();
