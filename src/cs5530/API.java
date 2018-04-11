@@ -835,11 +835,11 @@ public class API {
      * @param date date that user enters this information
      * @param stmt
      */
-    public static void Add_User_Favorite_Car(String vin, String login, Date date, Statement stmt)
+    public static boolean Add_User_Favorite_Car(String vin, String login, Date date, Statement stmt)
     {
         String sql = "INSERT INTO Favorites VALUES ('"+ vin+"', '"+login+"', '"+date.toString()+"');" ;
         System.out.println("Executed SQL: " + sql);
-        update(sql, stmt);
+        return update(sql, stmt);
 
     }
 
