@@ -47,7 +47,7 @@
     {
 %>
 
-<h2 style="text-align: center;"><span style="color: #0000ff;">Following is the List of car you own:</span></h2>
+<h2 style="text-align: center;"><span style="color: #0000ff;">Following is the List of the Drivers:</span></h2>
 <table class="tg" style="undefined;table-layout: fixed; width: 1004px">
     <colgroup>
         <col style="width: 163px">
