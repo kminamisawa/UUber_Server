@@ -86,7 +86,7 @@
         <col style="width: 185px">
     </colgroup>
     <tr>
-        <th class="tg-y3o4">ID</th>
+        <th class="tg-y3o4">RESERVATION NUMBER</th>
         <th class="tg-y3o4">VIN</th>
         <th class="tg-y3o4">COST</th>
         <th class="tg-y3o4">DATE</th>

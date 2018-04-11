@@ -18,8 +18,15 @@
     String zip = request.getParameter("RzipValue");
     String phone = request.getParameter("RphoneValue");
     UUser new_user = new UUser(loginID,password,name,street,city,state, phone);
-    if(API.Registration_UUser(new_user,con.stmt))
+    UD new_driver = new UD(loginID,password,name,street,city,state, phone);
+    boolean b = API.Registration_UDriver(new_driver, con.stmt);
+    if(b)
     {
+        // remove driver from db // TODO
+        API.Delete_UDriver(new_driver, con.stmt);
+        if(API.Registration_UUser(new_user,con.stmt))
+        {
+
 %>
 <p style="text-align: center;"><strong>Successfully Registered</strong></p>
 <form name="UserRegisterInfo" method=get action="index.jsp">
@@ -27,9 +34,16 @@
 </form>
 
 <%
-}
-else
-{
+        }else{
+
+%>
+
+<p style="text-align: center;"><strong>User ID is not available</strong>&nbsp;</p>
+<p style="text-align: center;"><button type="button" name="back" onclick="history.back()">back</button>
+
+<%
+        }
+    }else {
 %>
 <p style="text-align: center;"><strong>User ID is not available</strong>&nbsp;</p>
 <p style="text-align: center;"><button type="button" name="back" onclick="history.back()">back</button>

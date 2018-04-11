@@ -974,7 +974,7 @@ public class API {
                 System.out.println("cannot close resultset");
             }
         }
-
+        System.out.println(sql);
         return UC_Info_List;
     }
 
@@ -1178,5 +1178,18 @@ public class API {
         }
 
         return 0;
+    }
+
+    public static boolean Delete_UDriver(UD driver, Statement stmt) {
+        String sql="delete from UD where login = '" + driver.getLogin_ID() + "';";
+        System.out.println("Executed SQL: " + sql);
+        return update(sql, stmt);
+    }
+
+
+    public static boolean Delete_UUser(UUser user, Statement stmt) {
+        String sql="delete from UU where login = '" + user.getLogin_ID() + "';";
+        System.out.println("Executed SQL: " + sql);
+        return update(sql, stmt);
     }
 }
