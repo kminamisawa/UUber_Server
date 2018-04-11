@@ -68,7 +68,8 @@
     5. <a href="Rate_Feedback.jsp">Rate a Feedback</a><br />
     6. <a href="Add_Trusted_User.jsp">Add a Trusted User</a><br />
     7. <a href="Browse_UC.jsp">Browse UC</a><br />
-    8. See Useful Feedback<br />
+    8. <a href="Useful_Feedback.jsp">See Useful Feedback</a><br />
+
     <%--9. See the Most Popular UC<br />--%>
     <%--10. See the Most Expensive UC<br />--%>
     <%--11. See Highly Rated UD<br />--%>

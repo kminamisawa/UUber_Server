@@ -165,6 +165,48 @@ public class API {
         }
     }
 
+    public static ArrayList<String[]> ShowDrivers(Statement stmt)
+    {
+        ArrayList<String[]> result = new ArrayList<>();
+        String sql = "select login, name from UD;";
+
+        ResultSet rs = null;
+        System.out.println("executing "+sql);
+        try{
+            rs=stmt.executeQuery(sql);
+
+            if (rs == null){
+                System.out.println("Null detected");
+            }
+
+            while (rs.next()){
+                String[] arr = new String[2];
+
+                arr[0] = rs.getString("login");
+                arr[1] = rs.getString("name");
+
+                result.add(arr);
+            }
+            rs.close();
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+
+            System.out.println("cannot execute the query");
+        }
+        finally {
+            try{
+                if (rs!=null && !rs.isClosed()){
+                    rs.close();
+                }
+            }
+            catch(Exception e){
+                System.out.println("cannot close resultset");
+            }
+        }
+        return result;
+    }
+
     public static ArrayList<String[]> ShowYourCar(String login, Statement stmt)
     {
         ArrayList<String[]> result = new ArrayList<>();
@@ -746,7 +788,7 @@ public class API {
      * @param number number of the feedback this user wants to see
      * @param stmt
      */
-    public static void Show_Useful_Feedback(String login , int number, Statement stmt)
+    public static ArrayList<String[]> Show_Useful_Feedback(String login , int number, Statement stmt)
     {
         System.out.println("fid\tscore\ttext\tfbdate\tlogin\tvin");
         String sql = "select Feedback.fid, score, text, fbdate, login, vin " +
@@ -757,7 +799,7 @@ public class API {
 
 //        System.out.println("executing "+sql);
 
-        show_Feedback_Helper(stmt, sql);
+        return show_Feedback_Helper(stmt, sql);
     }
 
 
