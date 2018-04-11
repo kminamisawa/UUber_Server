@@ -356,12 +356,11 @@ public class API {
      * @param vin vin number of the car
      * @param stmt
      */
-    public static void Add_Feedback(int score, String message, Date date, String login, String vin , Statement stmt)
+    public static boolean Add_Feedback(int score, String message, Date date, String login, String vin , Statement stmt)
     {
         String sql = "INSERT INTO Feedback (score, text, fbdate, login, vin ) VALUES ("+ score+", '"+message+"', '"+date+"', '"+login+"', '"+vin+"');" ;
         System.out.println("Executed SQL: " + sql);
-        update(sql, stmt);
-
+        return update(sql, stmt);
     }
 
     /**
