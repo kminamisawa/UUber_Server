@@ -321,15 +321,15 @@ public class API {
         return person;
     }
 
-    public static void Update_UD_OperationHour(int startHour , int endHour, String login, Statement stmt)
+    public static boolean Update_UD_OperationHour(Time startHour , Time endHour, String login, Statement stmt)
     {
-        String sql="INSERT INTO Period (fromHour, toHour) VALUES (" + startHour +", " + endHour+ ");";
+        String sql="INSERT INTO Period (fromHour, toHour) VALUES ('" + startHour.toString() +"', '" + endHour+ "');";
         System.out.println("Executed SQL: " + sql);
         update(sql, stmt);
 
         sql="INSERT INTO Available (login) VALUES ( '"+ login+ "' );";
         System.out.println("Executed SQL: " + sql);
-        update(sql, stmt);
+        return update(sql, stmt);
     }
 
     /**

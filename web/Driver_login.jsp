@@ -57,8 +57,8 @@ Invalid user man.
     <%--<input type=hidden name="login" value="<%=loginID%>">--%>
             2. <a href="Modify_UC.jsp">Modifying Existing UC</a><br />
     <%--</form>--%>
+    3. <a href="Operation_Hour.jsp">Add Operation Hour</a><br />
 
-    3. Add Operation Hour<br />
 
     <form action="Driver_Index.jsp">
         <%--<%session.removeAttribute("driver");%>--%>
