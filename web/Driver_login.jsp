@@ -40,7 +40,7 @@ Invalid user man.
 
     <form action="Modify_UC.jsp">
         <%session.setAttribute("login", new_user.getLogin_ID());%>
-        <%--<input type=hidden name="login" value="<%=loginID%>">--%>
+    <%--<input type=hidden name="login" value="<%=loginID%>">--%>
         1. <a href="Modify_UC.jsp">Modifying Existing UC</a><br />
     </form>
 

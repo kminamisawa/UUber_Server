@@ -165,10 +165,11 @@ public class API {
         }
     }
 
-    public static ArrayList<String> ShowYourCar(String login, Statement stmt)
+    public static ArrayList<String[]> ShowYourCar(String login, Statement stmt)
     {
-        ArrayList<String> result = new ArrayList<>();
-        String sql = "select vin from UC where login = '"+login+"';";
+        ArrayList<String[]> result = new ArrayList<>();
+        String[] arr = new String[5];
+        String sql = "select vin, category, make, model, year from UC where login = '"+login+"';";
 
         ResultSet rs = null;
         System.out.println("executing "+sql);
@@ -180,9 +181,13 @@ public class API {
             }
 
             while (rs.next()){
-                result.add(rs.getString("vin"));
+                arr[0] = rs.getString("vin");
+                arr[1] = rs.getString("category");
+                arr[2] = rs.getString("make");
+                arr[3] = rs.getString("model");
+                arr[4] = rs.getString("year");
+                result.add(arr);
             }
-
             rs.close();
         }
         catch(Exception e){
