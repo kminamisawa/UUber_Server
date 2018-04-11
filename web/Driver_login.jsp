@@ -34,7 +34,8 @@
     if(new_user == null){
 %>
 
-Invalid user man.
+<h1 style="text-align: center;"><span style="color: #2100ff;"><strong>UUber Driver Login</strong></span></h1>
+<h3 style="text-align: center;"><span style="color: #ff0000;">Driver could not be found. Please check you have the correct credentials.</span></h3>
 
 <%
 }else{
