@@ -357,12 +357,11 @@ public class API {
      * @param vin vin number of the car
      * @param stmt
      */
-    public static void Add_Feedback(int score, String message, Date date, String login, String vin , Statement stmt)
+    public static boolean Add_Feedback(int score, String message, Date date, String login, String vin , Statement stmt)
     {
         String sql = "INSERT INTO Feedback (score, text, fbdate, login, vin ) VALUES ("+ score+", '"+message+"', '"+date+"', '"+login+"', '"+vin+"');" ;
         System.out.println("Executed SQL: " + sql);
-        update(sql, stmt);
-
+        return update(sql, stmt);
     }
 
     /**
@@ -836,11 +835,11 @@ public class API {
      * @param date date that user enters this information
      * @param stmt
      */
-    public static void Add_User_Favorite_Car(String vin, String login, Date date, Statement stmt)
+    public static boolean Add_User_Favorite_Car(String vin, String login, Date date, Statement stmt)
     {
         String sql = "INSERT INTO Favorites VALUES ('"+ vin+"', '"+login+"', '"+date.toString()+"');" ;
         System.out.println("Executed SQL: " + sql);
-        update(sql, stmt);
+        return update(sql, stmt);
 
     }
 

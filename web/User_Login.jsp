@@ -61,7 +61,7 @@
     1. <a href="Reservation.jsp">Make Reservation</a><br />
     2. <a href="Record_Ride.jsp">Record a Ride</a><br />
     3. <a href="Add_Favorite.jsp">Add a Favorite Car</a><br />
-    4. Give a Feedback<br />
+    4. <a href="Give_Feedback.jsp">Give a Feedback</a><br />
     5. Rate a Feedback<br />
     6. Add a Trusted User<br />
     7. Browse UC<br />

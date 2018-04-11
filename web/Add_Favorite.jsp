@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" import="cs5530.*"%>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.sql.Date" %>
+<%@ page import="java.util.Calendar" %>
 
 <html>
 <head>
@@ -37,12 +39,29 @@
 
 <%
     }else{
+        Date date = new Date(Calendar.getInstance().getTime().getTime());
+        boolean is_favorited = API.Add_User_Favorite_Car(VIN, user.getLogin_ID(), date, con.stmt);
+        if (is_favorited){
 %>
 
-VIN has entered already ${Add_Favorite_VIN}.
+<h2 style="text-align: center;"><span style="color: #2100ff;">The car with VIN: ${Add_Favorite_VIN} is added to your favorites.</span></h2>
+<%
+    }else {
+%>
+
+<h2 style="text-align: center;"><span style="color: #ff0000;">The car with VIN: ${Add_Favorite_VIN} is already your favorites.</span></h2>
+<%
+        }
+    }
+%>
+
+<div style="text-align:center">
+    <form name="back_to_menu" method=get action="User_Login.jsp">
+        <input type=submit value="Back to the Main Menu">
+    </form>
+</div>
 
 <%
-    }
     con.closeConnection();
 %>
 
