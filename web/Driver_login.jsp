@@ -38,10 +38,10 @@ Invalid user man.
         1. <a href="New_UC.jsp">Add New UC</a><br />
     </form>
 
-    <form action="New_UC.jsp">
+    <form action="Modify_UC.jsp">
         <%session.setAttribute("login", new_user.getLogin_ID());%>
         <%--<input type=hidden name="login" value="<%=loginID%>">--%>
-        1. <a href="New_UC.jsp">Modifying Existing UC</a><br />
+        1. <a href="Modify_UC.jsp">Modifying Existing UC</a><br />
     </form>
 
     3. Add Operation Hour<br />

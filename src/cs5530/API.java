@@ -165,6 +165,44 @@ public class API {
         }
     }
 
+    public static ArrayList<String> ShowYourCar(String login, Statement stmt)
+    {
+        ArrayList<String> result = new ArrayList<>();
+        String sql = "select vin from UC where login = '"+login+"';";
+
+        ResultSet rs = null;
+        System.out.println("executing "+sql);
+        try{
+            rs=stmt.executeQuery(sql);
+
+            if (rs == null){
+                System.out.println("Null detected");
+            }
+
+            while (rs.next()){
+                result.add(rs.getString("vin"));
+            }
+
+            rs.close();
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+
+            System.out.println("cannot execute the query");
+        }
+        finally {
+            try{
+                if (rs!=null && !rs.isClosed()){
+                    rs.close();
+                }
+            }
+            catch(Exception e){
+                System.out.println("cannot close resultset");
+            }
+        }
+        return result;
+    }
+
     public static boolean Login_Vin_Matches(Statement stmt, String login, String vin) throws Exception{
         String UC_info[] = new String[2];
         String sql = "select C.login, C.vin from UC C where C.login = '" + login + "' AND C.vin = '" + vin + "';";
