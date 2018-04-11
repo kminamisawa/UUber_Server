@@ -7,6 +7,20 @@
 </head>
 <body>
 <%
+    //////// Remove session attribute made in Modify_UC.jsp////////////
+    session.removeAttribute("Record_Update_year");
+    session.removeAttribute("Record_Update_count");
+    session.removeAttribute("Record_Update_make");
+    session.removeAttribute("Record_Update_vin");
+    session.removeAttribute("Record_Update_category");
+    session.removeAttribute("UC");
+    session.removeAttribute("Record_Update_model");
+    //////// Remove session attribute made in Modify_UC.jsp////////////
+
+    /////// Remove session attribute made in New_UC.jsp////////////////
+    session.removeAttribute("login");
+    /////// Remove session attribute made in New_UC.jsp////////////////
+
     Connector2 con = new Connector2();
     String loginID = request.getParameter("UserID");
     String password = request.getParameter("Password");
@@ -33,21 +47,21 @@ Invalid user man.
 <h2 style="text-align: center;"><span style="color: #0000ff;">Please Select Your Option:</span></h2>
 <h3 style="text-align: center;">
     <form action="New_UC.jsp">
-        <%session.setAttribute("login", new_user.getLogin_ID());%>
+        <%--<%session.setAttribute("login", new_user.getLogin_ID());%>--%>
         <%--<input type=hidden name="login" value="<%=loginID%>">--%>
         1. <a href="New_UC.jsp">Add New UC</a><br />
     </form>
 
-    <form action="Modify_UC.jsp">
-        <%session.setAttribute("login", new_user.getLogin_ID());%>
+    <%--<form action="Modify_UC.jsp">--%>
+        <%--<%session.setAttribute("login", new_user.getLogin_ID());%>--%>
     <%--<input type=hidden name="login" value="<%=loginID%>">--%>
-        1. <a href="Modify_UC.jsp">Modifying Existing UC</a><br />
-    </form>
+            2. <a href="Modify_UC.jsp">Modifying Existing UC</a><br />
+    <%--</form>--%>
 
     3. Add Operation Hour<br />
 
     <form action="Driver_Index.jsp">
-        <%session.removeAttribute("driver");%>
+        <%--<%session.removeAttribute("driver");%>--%>
         4. <a href="Driver_Index.jsp">Exit</a><br />
     </form>
 </h3>

@@ -17,7 +17,9 @@
 <body>
 <h1 style="text-align: center;"><span style="color: #ff6600;">UUber&nbsp;New UC</span></h1>
 <%
-    String login = (String)session.getAttribute("login");
+    Connector2 con = new Connector2();
+    UD ud = (UD)session.getAttribute("driver");
+    String login = ud.getLogin_ID();
     String vin = request.getParameter("vin");
     String category = request.getParameter("category");
     String make = request.getParameter("make");
@@ -55,26 +57,44 @@
 
         <p><input type=submit></p>
     </form>
+    <form name="UserIDInfo" method=get action="Driver_login.jsp">
+        <p style="text-align: center;"><input type="submit" value="Main Menu" /></p>
+    </form>
+
 </h3>
 
 <%
 }else{
-        Connector2 con = new Connector2();
 
         int y = Integer.parseInt(year);
         UC uc = new UC(vin, category,make, model, y, login);
         if(API.Add_New_Car(uc,con.stmt)) {
-
-        }
-        con.closeConnection();
-
+            // if succeed
 %>
 <p style="text-align: center;">Successfully Added to the Database</p>
 <form name="UserIDInfo" method=get onsubmit="return check_all_fields(this)" action="Driver_login.jsp">
-    <p style="text-align: center;"><input type="submit" value="go to menu" /></p>
+    <p style="text-align: center;"><input type="submit" value="Main Menu" /></p>
 </form>
 <%
+        }
+        else
+        {
+%>
+<p style="text-align: center;">This car already exists in the database. Please try again with a different car</p>
+<form name="UserIDInfo" method=get action="New_UC.jsp">
+    <p style="text-align: center;"><input type="submit" value="Register a different Car" /></p>
+</form>
+<form name="UserIDInfo" method=get action="Driver_login.jsp">
+    <p style="text-align: center;"><input type="submit" value="Main Menu" /></p>
+</form>
+<%
+        }
     }
+%>
+
+
+<%
+    con.closeConnection();
 %>
 </body>
 </html>

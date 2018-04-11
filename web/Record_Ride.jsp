@@ -199,7 +199,7 @@
 </table>
 
     <div style="text-align:center">
-        <form name="record" method=get onsubmit="return myEnter()" action="Confirmation_Record.jsp">
+        <form name="record" method=get onsubmit="return myEnter()" action="Confirmation_Record.jsp.jsp">
             <input type=submit value="Record" />
         </form>
     </div>
