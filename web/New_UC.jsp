@@ -12,7 +12,7 @@
 <%@ page import="java.util.ArrayList" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Add New UC</title>
 </head>
 <body>
 <h1 style="text-align: center;"><span style="color: #ff6600;">UUber&nbsp;New UC</span></h1>

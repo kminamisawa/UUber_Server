@@ -11,7 +11,7 @@ import java.util.Calendar;
  */
 public class API {
 
-    public static boolean update(String sql, Statement stmt){
+    public static boolean  update(String sql, Statement stmt){
 //        System.out.println("executing "+sql);
         try{
             stmt.executeUpdate(sql);
@@ -163,6 +163,44 @@ public class API {
         }else{
             System.out.println("The " + car.getLogin() + "'s UC " + "modified: ");
         }
+    }
+
+    public static ArrayList<String> ShowYourCar(String login, Statement stmt)
+    {
+        ArrayList<String> result = new ArrayList<>();
+        String sql = "select vin from UC where login = '"+login+"';";
+
+        ResultSet rs = null;
+        System.out.println("executing "+sql);
+        try{
+            rs=stmt.executeQuery(sql);
+
+            if (rs == null){
+                System.out.println("Null detected");
+            }
+
+            while (rs.next()){
+                result.add(rs.getString("vin"));
+            }
+
+            rs.close();
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+
+            System.out.println("cannot execute the query");
+        }
+        finally {
+            try{
+                if (rs!=null && !rs.isClosed()){
+                    rs.close();
+                }
+            }
+            catch(Exception e){
+                System.out.println("cannot close resultset");
+            }
+        }
+        return result;
     }
 
     public static boolean Login_Vin_Matches(Statement stmt, String login, String vin) throws Exception{
@@ -831,6 +869,10 @@ public class API {
      */
     public static boolean User_Record_Ride(String cost,Date date,String vin,String login,Time fromHour,Time toHour, Statement stmt)
     {
+        String s = "delete from Ride where cost = "+cost+" and date = '" +date.toString()+"' and vin = '"+vin+"' and login ='" +login +"' and fromHour = '"+fromHour.toString()+"' and toHour='"+toHour.toString()+"';";
+        System.out.println(s);
+
+        update(s, stmt);
         String sql = "INSERT INTO Ride (cost, date, vin, login, fromHour, toHour ) VALUES ("+ cost+", '"+date.toString()+"', '"+vin+"', '"+login+"', '"+fromHour.toString()+"', '"+toHour.toString()+"');" ;
         System.out.println("Executed SQL: " + sql);
         return update(sql, stmt);
