@@ -82,7 +82,10 @@
 
 %>
 
-There was an Error with the record. Please try again.
+There was an Error with the record. <br>
+It looks like you have already recorded this ride in the past.<br>
+(We are afraid that modifying the DB structure would mess up Phase 2.)<br>
+Please try again.
 <%
     }
 
