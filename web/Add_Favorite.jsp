@@ -49,7 +49,7 @@
 }else {
 %>
 
-<h2 style="text-align: center;"><span style="color: #ff0000;">The car with VIN: ${Add_Favorite_VIN} is already your favorites.</span></h2>
+<h2 style="text-align: center;"><span style="color: #ff0000;">The car with VIN: ${Add_Favorite_VIN} is already your favorites or does not exist.</span></h2>
 <%
         }
     }
