@@ -13,50 +13,6 @@
 %>
 <html>
 <head>
-    <%--<script LANGUAGE="javascript">--%>
-
-    <%--function check_all_fields(form_obj){--%>
-    <%--// alert(form_obj.searchAttribute.value+"='"+form_obj.attributeValue.value+"'");--%>
-    <%--if( form_obj.UserID.value == ""){--%>
-    <%--alert("Login field should be nonempty");--%>
-    <%--return false;--%>
-    <%--}else if( form_obj.Password.value == ""){--%>
-    <%--alert("Password field should be nonempty");--%>
-    <%--return false;--%>
-    <%--}--%>
-    <%--return true;--%>
-    <%--}--%>
-
-    <%--function check_all_register_info(form_obj) {--%>
-    <%--if( form_obj.RloginValue.value == ""){--%>
-    <%--alert("Login field should be nonempty");--%>
-    <%--return false;a--%>
-    <%--}else if( form_obj.RpwValue.value == ""){--%>
-    <%--alert("Password field should be nonempty");--%>
-    <%--return false;--%>
-    <%--}else if( form_obj.RnameValue.value == ""){--%>
-    <%--alert("Name field should be nonempty");--%>
-    <%--return false;--%>
-    <%--}else if( form_obj.RstreetValue.value == ""){--%>
-    <%--alert("Street field should be nonempty");--%>
-    <%--return false;--%>
-    <%--}else if( form_obj.RcityValue.value == ""){--%>
-    <%--alert("City field should be nonempty");--%>
-    <%--return false;--%>
-    <%--}else if( form_obj.RstateValue.value == ""){--%>
-    <%--alert("State field should be nonempty");--%>
-    <%--return false;--%>
-    <%--}else if( form_obj.RzipValue.value == ""){--%>
-    <%--alert("Zip field should be nonempty");--%>
-    <%--return false;--%>
-    <%--}else if( form_obj.RphoneValue.value == ""){--%>
-    <%--alert("Phone field should be nonempty");--%>
-    <%--return false;--%>
-    <%--}--%>
-    <%--return true;--%>
-    <%--}--%>
-
-    <%--</script>--%>
 </head>
 <body>
 

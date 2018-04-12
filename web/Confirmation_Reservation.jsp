@@ -8,11 +8,26 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" import="cs5530.*"%>
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 
 <html>
 <head>
-    <title>Title</title>
+    <title>Reservation Confirmation</title>
+    <style type="text/css">
+        .tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
+        .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
+        .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
+        .tg .tg-bezv{font-weight:bold;font-size:18px;border-color:#000000;vertical-align:top}
+        .tg .tg-wreh{font-weight:bold;border-color:#000000;vertical-align:top}
+        .tg .tg-drr2{font-weight:bold;font-size:16px;border-color:#000000}
+        .tg .tg-suq3{font-weight:bold;font-size:18px;font-family:Arial, Helvetica, sans-serif !important;;border-color:#000000}
+
+        table {
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
 </head>
 <body>
 <h1 style="text-align: center;"><span style="color: #ff6600;">UUber&nbsp;Reservation</span></h1>
@@ -28,7 +43,7 @@
             Double.parseDouble(get_cost),get_sql_date,con.stmt);
     if(reservation_confirmed){
         ArrayList<String[]> suggested_UC = API.Suggest_Other_UC(get_vin, user.getLogin_ID(), con.stmt);
-        request.setAttribute("suggested_UC", suggested_UC);
+//        request.setAttribute("suggested_UC", suggested_UC);
 %>
 <h2 style="text-align: center;"><span style="color: #0000ff;"><strong>Thank you for choosing UUber!<br>The reservation is confirmed as follows:</strong></span></h2>
 <p style="text-align: center;">
@@ -43,23 +58,54 @@
 <%
         if(suggested_UC.size() > 0){
 %>
-<h2 style="text-align: center;"><span style="color: #0000ff;"><strong>The Following is the Suggested UC:</strong></span></h2>
-<c:forEach items="${suggested_UC}" var="item">
-    <p style="text-align: center;">
-        <strong>VIN: ${item[0]}</strong><br>
-        <strong>Category: ${item[1]}</strong><br>
-        <strong>Make: ${item[2]}</strong><br>
-        <strong>Model: ${item[3]}</strong><br>
-        <strong>Year: ${item[4]}</strong><br>
-        <strong>UU Rented This UC: ${item[5]}</strong><br>
-        <strong>Ride Count: ${item[6]}</strong><br>
-    </p>
-</c:forEach>
 
+<h2 style="text-align: center;"><span style="color: #0000ff;"><strong>The Following is the Suggested UC:</strong></span></h2>
+<table class="tg" style="undefined;table-layout: fixed; width: 1022px">
+    <colgroup>
+        <col style="width: 163px">
+        <col style="width: 125px">
+        <col style="width: 142px">
+        <col style="width: 134px">
+        <col style="width: 145px">
+        <col style="width: 163px">
+        <col style="width: 150px">
+    </colgroup>
+    <tr>
+        <th class="tg-suq3">VIN</th>
+        <th class="tg-suq3">Category</th>
+        <th class="tg-suq3">Make</th>
+        <th class="tg-bezv">Model</th>
+        <th class="tg-wreh">Year</th>
+        <th class="tg-wreh">UC Owner</th>
+        <th class="tg-wreh">Ride Count</th>
+    </tr>
 <%
-        }else{
+            for(String[] each_suggested_UC : suggested_UC){
+                request.setAttribute("each_VIN", each_suggested_UC[0]);
+                request.setAttribute("each_Category", each_suggested_UC[1]);
+                request.setAttribute("each_Make", each_suggested_UC[2]);
+                request.setAttribute("each_Model", each_suggested_UC[3]);
+                request.setAttribute("each_Year", each_suggested_UC[4]);
+                request.setAttribute("each_owner", each_suggested_UC[5]);
+                request.setAttribute("each_count", each_suggested_UC[6]);
 %>
 
+    <tr>
+        <td class="tg-drr2">${each_VIN}</td>
+        <td class="tg-drr2">${each_Category}</td>
+        <td class="tg-drr2">${each_Make}</td>
+        <td class="tg-wreh">${each_Model}</td>
+        <td class="tg-wreh">${each_Year}</td>
+        <td class="tg-wreh">${each_owner}</td>
+        <td class="tg-wreh">${each_count}</td>
+    </tr>
+<%
+            }
+%>
+</table>
+<%
+         }else{
+%>
 <strong>I'm sorry. No suggested UC is available.</strong><br>
 
 <%

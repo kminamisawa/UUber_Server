@@ -10,7 +10,7 @@
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 
 <html>
 <head>
@@ -42,6 +42,20 @@
             window.history.back();
         }
     </script>
+
+    <style type="text/css">
+        .tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
+        .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
+        .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
+        .tg .tg-8p71{font-weight:bold;font-size:18px;font-family:Arial, Helvetica, sans-serif !important;;border-color:inherit}
+        .tg .tg-drr2{font-weight:bold;font-size:16px;border-color:#000000}
+
+        table {
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
 </head>
 <body>
 <h1 style="text-align: center;"><span style="color: #ff6600;">UUber&nbsp;Reservation</span></h1>
@@ -128,32 +142,49 @@
 %>
 
 <h2 style="text-align: center;"><span style="color: #0000ff;"><strong>The following is the available PID.</strong></span></h2><br>
-
+<table class="tg" style="undefined;table-layout: fixed; width: 430px">
+    <colgroup>
+        <col style="width: 163px">
+        <col style="width: 125px">
+        <col style="width: 142px">
+    </colgroup>
+    <tr>
+        <th class="tg-8p71">PID</th>
+        <th class="tg-8p71">From (Hour)</th>
+        <th class="tg-8p71">To (Hour)</th>
+    </tr>
 <%
     for (String each_pid : pid_list){
+        String[] hour = API.GetFromToHour(each_pid, con.stmt);
+        request.setAttribute("each_pid", each_pid);
+        request.setAttribute("each_from", hour[0]);
+        request.setAttribute("each_to", hour[1]);
 %>
 
-<h3 style="text-align: center;"><strong>PID: <%=each_pid%></strong></h3>
-
-<%
-    String[] hour = API.GetFromToHour(each_pid, con.stmt);
-%>
-
-<p style="text-align: center;">
-    <em>From: <%=hour[0]%></em><br>
-    <em>To: <%=hour[1]%></em></p>
+    <tr>
+        <td class="tg-drr2">${each_pid}</td>
+        <td class="tg-drr2">${each_from}</td>
+        <td class="tg-drr2">${each_to}</td>
+    </tr>
 <%
     }
 %>
-
+</table>
 <form method="GET" action="Reservation.jsp">
     <h3 style="text-align: center;"><span style="color: #0000ff;">Please select the available PID:</span></h3>
     <p style="text-align: center;">
     <form action="select_pid" method="POST">
         <select name="PID" >
-            <c:forEach var="item" items="${pids}">
-                <option>${item}</option>
-            </c:forEach>
+            <%
+                for(String each_available_pid : availablePid){
+                    request.setAttribute("each_available_pid", each_available_pid);
+            %>
+
+            <option>${each_available_pid}</option>
+
+            <%
+                }
+            %>
         </select>
         <input type="submit"/>
     </form>
